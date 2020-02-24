@@ -48,7 +48,11 @@ class AbstractStock {
     }
 
     get percentStr() {
-        return sprintf('%.2f%%', this.percent * 100);
+        if (this.percent > 0) {
+            return sprintf('+%.2f%%', this.percent * 100);
+        } else {
+            return sprintf('%.2f%%', this.percent * 100);
+        }
     }
 
     toString() {

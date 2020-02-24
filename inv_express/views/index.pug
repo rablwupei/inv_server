@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class="container")
+    table
+      tbody(class="table-hover")
+        tr
+          each val in header
+            td
+              a(class="octicon arrow-up")=val
+        each vals in outputs
+          tr
+            each val in vals
+              td=val
+
+

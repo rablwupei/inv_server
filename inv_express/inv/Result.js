@@ -8,19 +8,35 @@ class Result {
         var offset = (stock.cur / unit.price1 - 1);
         this.number = offset;
         this.output = [
+            0,
+            unit.codeStr,
             unit.name,
-            unit.price1,
             stock.cur,
+            unit.price1,
             sprintf("%.2f%%", offset * 100),
+            stock.percentStr,
             sprintf("%.2f%%", unit.percent * 100),
+        ]
+    }
+
+    head() {
+        this.output = [
+            "序号",
+            "代码",
+            "名称",
+            "当前价",
+            "买入价",
+            "距离",
+            "今日涨幅",
+            "仓位上限",
         ]
     }
 }
 
 Result.request = function*() {
-    var excel = new ExcelReader("../src/a.xls");
-    var codes = [];
+    var excel = new ExcelReader(__dirname + "/../src/a.xls");
     excel.parse();
+    var codes = [];
     var units = excel.units;
     for (var i = 0; i < units.length; i++) {
         codes.push(units[i].codeStrMarket);
@@ -38,8 +54,16 @@ Result.request = function*() {
     }
     results.sort(function (a, b) {
         return a.number - b.number;
-    })
-    console.log(results);
+    });
+    var outputs = [];
+    for (var i = 0; i < results.length; i++) {
+        results[i].output[0] = i + 1;
+        outputs.push(results[i].output);
+    }
+    var header = new Result();
+    header.head();
+    return {header:header.output, outputs:outputs};
 };
 
-co(Result.request);
+// co(Result.request);
+module.exports = Result;
