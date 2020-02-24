@@ -18,7 +18,7 @@ class Result {
 }
 
 Result.request = function*() {
-    var excel = new ExcelReader("./excel/a.xls");
+    var excel = new ExcelReader("../src/a.xls");
     var codes = [];
     excel.parse();
     var units = excel.units;
@@ -42,4 +42,4 @@ Result.request = function*() {
     console.log(results);
 };
 
-// co(Result.request);
+co(Result.request);
