@@ -44,21 +44,22 @@ class ExcelReader {
                 excelUnit.price2 = parseFloat(unit[3]) || 0;
                 excelUnit.price3 = parseFloat(unit[4]) || 0;
                 if (excelUnit.code && !isNaN(excelUnit.price1)) {
-                    if (unit[5]) {
-                        excelUnit.tips = sprintf("%.2f%%", parseFloat(unit[5]) * 100);
-                    }
                     if (/^[0-9]+/.test(excelUnit.code)) {
-                        excelUnit.codeStr = sprintf("%06s", excelUnit.code);
-                        if (excelUnit.codeStr.startsWith("6")) {
-                            excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
-                        } else {
-                            excelUnit.codeStrMarket = "sz" + excelUnit.codeStr;
+                        if (unit[5]) {
+                            excelUnit.tips = sprintf("%.2f%%", parseFloat(unit[5]) * 100);
+                            excelUnit.codeStr = sprintf("%06s", excelUnit.code);
+                            if (excelUnit.codeStr.startsWith("6")) {
+                                excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
+                            } else {
+                                excelUnit.codeStrMarket = "sz" + excelUnit.codeStr;
+                            }
+                            this._units.push(excelUnit);
                         }
                     } else {
                         excelUnit.codeStr = excelUnit.code;
                         excelUnit.codeStrMarket = excelUnit.code;
+                        this._units.push(excelUnit);
                     }
-                    this._units.push(excelUnit);
                 }
             }
         }
