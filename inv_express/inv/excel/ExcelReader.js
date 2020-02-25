@@ -29,9 +29,9 @@ class ExcelReader {
                 excelUnit.percent) {
                 excelUnit.codeStr = sprintf("%06d", excelUnit.code);
                 if (excelUnit.codeStr.startsWith("6")) {
-                    excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
+                    excelUnit.codeStrMarket = "s_sh" + excelUnit.codeStr;
                 } else {
-                    excelUnit.codeStrMarket = "sz" + excelUnit.codeStr;
+                    excelUnit.codeStrMarket = "s_sz" + excelUnit.codeStr;
                 }
                 this._units.push(excelUnit);
             }

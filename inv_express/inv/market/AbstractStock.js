@@ -8,43 +8,14 @@ var sprintf = require("sprintf-js").sprintf;
 class AbstractStock {
     constructor(code) {
         this._code = code;
+        this.name = '';
+        this.cur = 0;
+        this.change = 0;
+        this.percent = 0;
     }
 
     get code() {
         return this._code;
-    }
-
-    get name() {
-        throw new Error('not implement.');
-    }
-
-    get time() {
-        throw new Error('not implement.');
-    }
-
-    get cur() {
-        throw new Error('not implement.');
-    }
-
-    get high() {
-        throw new Error('not implement.');
-    }
-
-    get low() {
-        throw new Error('not implement.');
-    }
-
-    get open() {
-        throw new Error('not implement.');
-    }
-
-    get close() {
-        throw new Error('not implement.');
-    }
-
-    /** 涨跌幅 */
-    get percent() {
-        return (this.cur / this.close - 1);
     }
 
     get percentStr() {
@@ -56,8 +27,8 @@ class AbstractStock {
     }
 
     toString() {
-        return sprintf("%s - %f (%.2f%%) %f - %f",
-            this.name, this.cur, this.percent * 100, this.low, this.high);
+        return sprintf("%s - %f (%s)",
+            this.name, this.cur, this.changePercentStr);
     }
 
 }

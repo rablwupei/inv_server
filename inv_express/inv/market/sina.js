@@ -10,72 +10,17 @@ class SinaStock extends AbstractStock {
     }
 
     parse(text) {
-        this.strs = text.split(',');
-    }
-
-    get time() {
+        this._strs = text.split(',');
         if (this.code.startsWith('hk')) {
-            return this.strs[18];
+            this.name = this._strs[0];
+            this.cur = parseFloat(this._strs[1]);
+            this.change = parseFloat(this._strs[2]);
         } else {
-            //return this.strs[30] + " " + this.strs[31];
-            return this.strs[31];
+            this.name = this._strs[0];
+            this.cur = parseFloat(this._strs[1]);
+            this.change = parseFloat(this._strs[2]);
         }
-    }
-
-    get name() {
-        if (this.code.startsWith('hk')) {
-            return this.strs[1];
-        } else {
-            return this.strs[0];
-        }
-    }
-
-    get cur() {
-        if (this.code.startsWith('hk')) {
-            return parseFloat(this.strs[6]);
-        } else {
-            return parseFloat(this.strs[3]);
-        }
-    }
-
-    get high() {
-        if (this.code.startsWith('hk')) {
-            return parseFloat(this.strs[4]);
-        } else {
-            return parseFloat(this.strs[4]);
-        }
-    }
-
-    get low() {
-        if (this.code.startsWith('hk')) {
-            return parseFloat(this.strs[5]);
-        } else {
-            return parseFloat(this.strs[5]);
-        }
-    }
-
-    get open() {
-        if (this.code.startsWith('hk')) {
-            return parseFloat(this.strs[2]);
-        } else {
-            return parseFloat(this.strs[1]);
-        }
-    }
-
-    get close() {
-        if (this.code.startsWith('hk')) {
-            return parseFloat(this.strs[3]);
-        } else {
-            return parseFloat(this.strs[2]);
-        }
-    }
-
-    get buy1lot() {
-        if (this.code.startsWith('hk')) {
-            return null;
-        } else {
-            return parseInt(this.strs[10]);
-        }
+        this.percent = this.cur / (this.cur - this.change) - 1;
     }
 
 }
@@ -83,33 +28,26 @@ class SinaStock extends AbstractStock {
 var http = require('../utils/http');
 var sina = {};
 
-sina.url = "http://hq.sinajs.cn/list=";
+sina.url = "http://hq.sinajs.cn/format=text&list=";
 
 sina.get = function*(codes) {
     var url = codes;
     if (!url.startsWith(sina.url)) {
         url = sina.url + url;
     }
-    var codeList = codes.split(',');
+    var map = {};
     var body = yield http.get(url, {gzip : false, encoding : 'GBK'});
-    var strs = body.match(/(?:"[^"]*"|^[^"]*$)/g);
-    var arr = [];
-    for (var i = 0; i < codeList.length; i++) {
-        var error = true;
-        if (strs[i]) {
-            var text = strs[i].replace(/"/g, "");
-            if (text) {
-                error = false;
-                var stock = new SinaStock(codeList[i]);
-                stock.parse(text);
-                arr.push(stock);
-            }
-        }
-        if (error) {
-            throw new Error("stock not found. code = " + codeList[i]);
+    body = body.trim();
+    if (!body.endsWith("FAILED")) {
+        var bodyList = body.split('\n');
+        for (var i = 0; i < bodyList.length; i++) {
+            var stockStrs = bodyList[i].split('=');
+            var stock = new SinaStock(stockStrs[0]);
+            map[stock.code] = stock;
+            stock.parse(stockStrs[1])
         }
     }
-    return arr;
+    return map;
 };
 
 module.exports = sina;

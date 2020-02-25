@@ -6,6 +6,14 @@ var sprintf = require("sprintf-js").sprintf;
 class Result {
     compare(unit, stock) {
         var offset = (stock.cur / unit.price1 - 1);
+        var offsetStr = "-";
+        var percentStr = "-";
+        if (unit.price1 > 0) {
+            offsetStr = sprintf("%.2f%%", offset * 100);
+        }
+        if (unit.percent > 0) {
+            percentStr = sprintf("%.2f%%", unit.percent * 100)
+        }
         this.number = offset;
         this.output = [
             0,
@@ -13,9 +21,9 @@ class Result {
             unit.name,
             stock.cur,
             unit.price1,
-            sprintf("%.2f%%", offset * 100),
+            offsetStr,
             stock.percentStr,
-            sprintf("%.2f%%", unit.percent * 100),
+            percentStr,
         ]
     }
 
@@ -41,13 +49,11 @@ Result.request = function*() {
     for (var i = 0; i < units.length; i++) {
         codes.push(units[i].codeStrMarket);
     }
-    var stocks = yield sina.get(codes.join(","));
-    console.log("stocks count: " + stocks.length);
-    console.log("units count: " + units.length);
+    var stockMap = yield sina.get(codes.join(","));
     var results = [];
     for (var i = 0; i < units.length; i++) {
         var unit = units[i];
-        var stock = stocks[i];
+        var stock = stockMap[unit.codeStrMarket];
         var result = new Result();
         result.compare(unit, stock);
         results.push(result);
