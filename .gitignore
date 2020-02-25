@@ -1,2 +1,2 @@
-
-inv_express/src/a.xls
+inv_express/src/*.xls
+inv_express/src/*.xlsx
