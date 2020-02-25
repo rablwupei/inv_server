@@ -6,24 +6,24 @@ var sprintf = require("sprintf-js").sprintf;
 class Result {
     compare(unit, stock) {
         var offset = (stock.cur / unit.price1 - 1);
-        var offsetStr = "-";
-        var percentStr = "-";
+        var offsetStr = "";
+        var tips = "";
         if (unit.price1 > 0) {
             offsetStr = sprintf("%.2f%%", offset * 100);
         }
-        if (unit.percent > 0) {
-            percentStr = sprintf("%.2f%%", unit.percent * 100)
+        if (unit.tips) {
+            tips = unit.tips
         }
         this.number = offset;
         this.output = [
             0,
             unit.codeStr,
             unit.name,
-            stock.cur,
-            unit.price1,
-            offsetStr,
             stock.percentStr,
-            percentStr,
+            offsetStr,
+            stock.curStr,
+            unit.price1,
+            tips,
         ]
     }
 
@@ -32,17 +32,17 @@ class Result {
             "序号",
             "代码",
             "名称",
+            "今日涨幅",
+            "距离",
             "当前价",
             "买入价",
-            "距离",
-            "今日涨幅",
-            "仓位上限",
+            "提示",
         ]
     }
 }
 
-Result.request = function*() {
-    var excel = new ExcelReader(__dirname + "/../src/a.xls");
+Result.requestExcel = function*(name, type) {
+    var excel = new ExcelReader(__dirname + "/../src/" + name, type);
     excel.parse();
     var codes = [];
     var units = excel.units;
@@ -69,6 +69,16 @@ Result.request = function*() {
     var header = new Result();
     header.head();
     return {header:header.output, outputs:outputs};
+}
+
+Result.request = function*() {
+    var results = yield [
+        Result.requestExcel("a.xls"),
+        Result.requestExcel("a_market.xls"),
+        Result.requestExcel("hk_market.xls"),
+        Result.requestExcel("hk.xlsx", ExcelReader.type_miaomiaohk),
+    ];
+    return results;
 };
 
 // co(Result.request);

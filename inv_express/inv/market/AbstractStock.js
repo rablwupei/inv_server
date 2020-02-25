@@ -18,6 +18,10 @@ class AbstractStock {
         return this._code;
     }
 
+    get curStr() {
+        return sprintf('%.2f', this.cur);
+    }
+
     get percentStr() {
         if (this.percent > 0) {
             return sprintf('+%.2f%%', this.percent * 100);
@@ -28,7 +32,7 @@ class AbstractStock {
 
     toString() {
         return sprintf("%s - %f (%s)",
-            this.name, this.cur, this.changePercentStr);
+            this.name, this.cur, this.percentStr);
     }
 
 }

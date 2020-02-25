@@ -1,16 +1,17 @@
 extends layout
 
 block content
-  div(class="container")
-    table
-      tbody(class="table-hover")
-        tr
-          each val in header
-            td
-              a(class="octicon arrow-up")=val
-        each vals in outputs
+  each result in results
+    div(class="container")
+      table
+        tbody(class="table-hover")
           tr
-            each val in vals
-              td=val
+            each val in result.header
+              td
+                a(class="octicon arrow-up")=val
+          each vals in result.outputs
+            tr
+              each val in vals
+                td=val
 
 

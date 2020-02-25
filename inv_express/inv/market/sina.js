@@ -12,15 +12,14 @@ class SinaStock extends AbstractStock {
     parse(text) {
         this._strs = text.split(',');
         if (this.code.startsWith('hk')) {
-            this.name = this._strs[0];
-            this.cur = parseFloat(this._strs[1]);
-            this.change = parseFloat(this._strs[2]);
+            this.name = this._strs[1];
+            this.cur = parseFloat(this._strs[6]);
+            this.percent = parseFloat(this._strs[8]) / 100;
         } else {
             this.name = this._strs[0];
-            this.cur = parseFloat(this._strs[1]);
-            this.change = parseFloat(this._strs[2]);
+            this.cur = parseFloat(this._strs[3]);
+            this.percent = this.cur / parseFloat(this._strs[2]) - 1;
         }
-        this.percent = this.cur / (this.cur - this.change) - 1;
     }
 
 }
@@ -36,6 +35,7 @@ sina.get = function*(codes) {
         url = sina.url + url;
     }
     var map = {};
+    console.log("url: " + url);
     var body = yield http.get(url, {gzip : false, encoding : 'GBK'});
     body = body.trim();
     if (!body.endsWith("FAILED")) {
