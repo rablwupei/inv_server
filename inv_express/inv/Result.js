@@ -19,10 +19,10 @@ class Result {
             index + 1,
             unit.codeStr,
             unit.name,
-            stock.percentStr,
-            offsetStr,
             stock.curStr,
+            stock.percentStr,
             unit.price1,
+            offsetStr,
             tips,
         ]
     }
@@ -32,10 +32,10 @@ class Result {
             "序号",
             "代码",
             "名称",
-            "今日涨幅",
+            "最新价",
+            "涨跌幅",
+            "目标价",
             "距离",
-            "当前价",
-            "买入价",
             "提示",
         ]
     }
