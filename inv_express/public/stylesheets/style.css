@@ -1,29 +1,26 @@
-
-body {
+body, div, h1 {
+  font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","HeitiSC","WenQuanYi Micro Hei",sans-serif;
   margin: 0;
-  font-family: "ubuntu", "Tahoma", "Microsoft YaHei", Arial, Serif;
+  padding: 0;
   font-size: small;
 }
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+
+html {
+  box-sizing: border-box;
 }
-@media (min-width: 768px) {
-  .container {
-    max-width: 800px;
-  }
+*, *:before, *:after {
+  box-sizing: inherit;
 }
-@media (min-width: 992px) {
-  .container {
-    max-width: 800px;
-  }
+.block {
+  width: 33.3%;
+  float: left;
+  padding: 5px;
 }
-@media (min-width: 1200px) {
-  .container {
-    max-width: 800px;
-  }
+@media all and (max-width: 1300px) {
+  .block { width: 50%; }
+}
+@media all and (max-width: 900px) {
+  .block { float: none; width: 100%; }
 }
 
 /* TABLE BACKGROUND color (match the original theme) */

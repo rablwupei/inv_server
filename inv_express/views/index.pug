@@ -1,22 +1,23 @@
 extends layout
 
 block content
-  - for(var i = 0; i < results.length; i++) {
-  -   var result = results[i];
-  -   var talbeId = "myTable" + i;
-  div(class="container")
-    table(id=talbeId class="widget-zebra tablesorter-blue")
-      thead
-        tr
-          each val in result.header
-            th=val
-      tbody
-        each vals in result.outputs
+  div(id="main")
+    - for(var i = 0; i < results.length; i++) {
+    -   var result = results[i];
+    -   var talbeId = "myTable" + i;
+    div(class="block")
+      table(id=talbeId class="widget-zebra tablesorter-blue")
+        thead
           tr
-            each val in vals
-              td=val
-    script.
-      $(function () {
-        $("##{talbeId}").tablesorter();
-      });
-  - }
+            each val in result.header
+              th=val
+        tbody
+          each vals in result.outputs
+            tr
+              each val in vals
+                td=val
+      script.
+        $(function () {
+          $("##{talbeId}").tablesorter();
+        });
+    - }
