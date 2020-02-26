@@ -4,7 +4,7 @@ var sina = require('./market/sina');
 var sprintf = require("sprintf-js").sprintf;
 
 class Result {
-    compare(unit, stock) {
+    compare(index, unit, stock) {
         var offset = (stock.cur / unit.price1 - 1);
         var offsetStr = "";
         var tips = "";
@@ -16,7 +16,7 @@ class Result {
         }
         this.number = offset;
         this.output = [
-            0,
+            index + 1,
             unit.codeStr,
             unit.name,
             stock.percentStr,
@@ -55,7 +55,7 @@ Result.requestExcel = function*(name, type) {
         var unit = units[i];
         var stock = stockMap[unit.codeStrMarket];
         var result = new Result();
-        result.compare(unit, stock);
+        result.compare(i, unit, stock);
         results.push(result);
     }
     results.sort(function (a, b) {
@@ -63,7 +63,6 @@ Result.requestExcel = function*(name, type) {
     });
     var outputs = [];
     for (var i = 0; i < results.length; i++) {
-        results[i].output[0] = i + 1;
         outputs.push(results[i].output);
     }
     var header = new Result();
