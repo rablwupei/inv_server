@@ -1,11 +1,11 @@
 extends layout
 
 block content
-  div(id="main")
+  div(class="grid")
     - for(var i = 0; i < results.length; i++) {
     -   var result = results[i];
     -   var talbeId = "myTable" + i;
-    div(class="block")
+    div(class="grid-item")
       table(id=talbeId class="widget-zebra tablesorter-blue")
         thead
           tr
@@ -21,3 +21,8 @@ block content
           $("##{talbeId}").tablesorter();
         });
     - }
+  script.
+    $('.grid').masonry({
+      itemSelector: '.grid-item',
+      columnWidth: 490
+    });

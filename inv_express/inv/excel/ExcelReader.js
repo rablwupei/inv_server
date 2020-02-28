@@ -13,6 +13,10 @@ class ExcelReader {
         return 1;
     }
 
+    static get type_miaomiaozhuanzhai() {
+        return 2;
+    }
+
     get units() {
         return this._units;
     }
@@ -24,9 +28,9 @@ class ExcelReader {
         for (var row = 0; row < data.length; row++) {
             var unit = data[row];
             var excelUnit = new ExcelUnit();
-            excelUnit.code = "" + unit[0];
-            excelUnit.name = "" + unit[1];
             if (this._type === ExcelReader.type_miaomiaohk) {
+                excelUnit.code = "" + unit[0];
+                excelUnit.name = "" + unit[1];
                 if (excelUnit.name === "复星国际") {
                     excelUnit.code = "656";
                 }
@@ -39,7 +43,22 @@ class ExcelReader {
                     excelUnit.codeStrMarket = "hk" + excelUnit.codeStr;
                     this._units.push(excelUnit);
                 }
+            } else if (this._type === ExcelReader.type_miaomiaozhuanzhai) {
+                excelUnit.code = "" + unit[12];
+                excelUnit.name = "" + unit[13];
+                excelUnit.price1 = parseFloat(unit[14]);
+                if (excelUnit.code && !isNaN(excelUnit.price1)) {
+                    excelUnit.codeStr = sprintf("%05s", excelUnit.code);
+                    if (excelUnit.codeStr.startsWith("11")) {
+                        excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
+                    } else {
+                        excelUnit.codeStrMarket = "sz" + excelUnit.codeStr;
+                    }
+                    this._units.push(excelUnit);
+                }
             } else {
+                excelUnit.code = "" + unit[0];
+                excelUnit.name = "" + unit[1];
                 excelUnit.price1 = parseFloat(unit[2]);
                 excelUnit.price2 = parseFloat(unit[3]) || 0;
                 excelUnit.price3 = parseFloat(unit[4]) || 0;
