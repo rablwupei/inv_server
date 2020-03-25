@@ -35,7 +35,7 @@ sina.get = function*(codes) {
         url = sina.url + url;
     }
     var map = {};
-    console.log("url: " + url);
+    // console.log("url: " + url);
     var body = yield http.get(url, {gzip : false, encoding : 'GBK'});
     body = body.trim();
     if (!body.endsWith("FAILED")) {
