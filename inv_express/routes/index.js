@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var co = require('co');
-var Result = require('../inv/Result');
+var Result = require('../inv/miaomiao/Result');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

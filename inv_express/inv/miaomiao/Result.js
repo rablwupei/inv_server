@@ -1,6 +1,6 @@
 var ExcelReader = require("./excel/ExcelReader");
 var co = require('co');
-var sina = require('./market/sina');
+var sina = require('../market/sina');
 var sprintf = require("sprintf-js").sprintf;
 
 class Result {
@@ -42,7 +42,7 @@ class Result {
 }
 
 Result.requestExcel = function*(name, type) {
-    var excel = new ExcelReader(__dirname + "/../src/miaomiao/" + name, type);
+    var excel = new ExcelReader(__dirname + "/../../src/miaomiao/" + name, type);
     excel.parse();
     var codes = [];
     var units = excel.units;
