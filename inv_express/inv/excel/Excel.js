@@ -129,7 +129,7 @@ class Excel {
     convertString(value, type) {
         if (type === type_float || type === type_percent) {
             let num = parseFloat(value);
-            if (num) {
+            if (num === 0 || num) {
                 if (type === type_percent) {
                     value = +(num * 100).toFixed(2) + "%";
                 } else {
