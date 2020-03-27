@@ -1,6 +1,7 @@
 var xlsx = require('node-xlsx').default;
 var sina = require('../market/sina');
 var tiantianjingzhi = require('../market/tiantianjingzhi');
+var xueqiu = require('../market/xueqiu');
 var util = require("util");
 var sprintf = require("sprintf-js").sprintf;
 
@@ -53,6 +54,53 @@ class DataSourceParserTiantianjingzhi extends DataSourceParser {
     }
 
     fillValue(values) {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var value = {};
+        values[this.key] = value;
+        for (let i = 0; i < this._stocks.length; i++) {
+            var stock = this._stocks[i];
+            value["" + stock.code] = stock.json;
+        }
+    }
+}
+
+class DataSourceParserXueqiu extends DataSourceParser {
+    get key() {
+        return "雪球";
+    }
+
+    get regular() {
+        return /雪球\[(.*?)\]\[(.*?)\]/g;
+    }
+
+    replaceStr(str) {
+        return str.replace(this.regular, 'values["雪球"]["$1"]["$2"]')
+    }
+
+    addRegularResult(res) {
+        this._regularResults.push(res);
+        this._ids.add(res[1]);
+    }
+
+    *request() {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var requests = [];
+        var ids = Array.from(this._ids);
+        for (let i = 0; i < ids.length; i++) {
+            var code = ids[i];
+            requests.push(xueqiu.get(code));
+        }
+        this._stocks = yield requests;
+    }
+
+    fillValue(values) {
+        if (this._ids.size === 0) {
+            return;
+        }
         var value = {};
         values[this.key] = value;
         for (let i = 0; i < this._stocks.length; i++) {
@@ -90,6 +138,9 @@ class DataSourceParserSina extends DataSourceParser {
     }
 
     fillValue(values) {
+        if (this._ids.size === 0) {
+            return;
+        }
         var value = {};
         values[this.key] = value;
         for (const key in this._stockMap) {
@@ -111,6 +162,7 @@ class Excel {
         this._parsers = [
             new DataSourceParserTiantianjingzhi(),
             new DataSourceParserSina(),
+            new DataSourceParserXueqiu(),
         ];
     }
 
@@ -210,6 +262,7 @@ class Excel {
                 if (this._debug) {
                     debug.push(valuesStr + data[i][j])
                 }
+                // console.log(valuesStr + data[i][j]);
                 data[i][j] = eval(valuesStr + data[i][j]);
                 if (this._debug) {
                     debug.push(data[0][j] + ": " + data[i][j])
