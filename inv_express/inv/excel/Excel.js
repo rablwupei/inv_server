@@ -115,15 +115,15 @@ class Excel {
     }
 
     skipRow(i) {
-        return !this._excelData[i][1] && !this._excelData[i][2];
+        return !this._excelData[i][0] && !this._excelData[i][1];
     }
 
     skipParse(i, j) {
-        return this._excelData[2][j] === type_pre;
+        return this._excelData[1][j] === type_pre;
     }
 
     skipAddVar(i, j) {
-        return this._excelData[2][j] === type_string;
+        return this._excelData[1][j] === type_string;
     }
 
     convertString(value, type) {
@@ -144,11 +144,11 @@ class Excel {
         var excelData = xlsx.parse(this._path)[0].data;
         this._excelData = excelData;
         this._isMatch = {};
-        for (var i = 3; i < excelData.length; ++i) {
+        for (var i = 2; i < excelData.length; ++i) {
             if (this.skipRow(i)) {
                 continue;
             }
-            for (var j = 1; j < excelData[i].length; ++j) {
+            for (var j = 0; j < excelData[i].length; ++j) {
                 if (this.skipParse(i, j)) {
                     continue;
                 }
@@ -195,12 +195,12 @@ class Excel {
         }
         var debug = [];
         var data = JSON.parse(JSON.stringify(this._excelData));
-        for (let i = 3; i < data.length; i++) {
+        for (let i = 2; i < data.length; i++) {
             if (this.skipRow(i)) {
                 continue;
             }
             var valuesStr = "";
-            for (let j = 1; j < data[i].length; j++) {
+            for (let j = 0; j < data[i].length; j++) {
                 if (this.skipParse(i, j)) {
                     continue;
                 }
@@ -212,10 +212,10 @@ class Excel {
                 }
                 data[i][j] = eval(valuesStr + data[i][j]);
                 if (this._debug) {
-                    debug.push(data[1][j] + ": " + data[i][j])
+                    debug.push(data[0][j] + ": " + data[i][j])
                 }
                 if (!this.skipAddVar(i, j)) {
-                    valuesStr += util.format("let %s = %s; ", data[1][j], data[i][j]);
+                    valuesStr += util.format("let %s = %s; ", data[0][j], data[i][j]);
                 }
             }
             if (this._debug) {
@@ -223,17 +223,17 @@ class Excel {
             }
         }
         var output = { list : [], debug : debug.join('\n') };
-        for (let i = 1; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             if (this.skipRow(i)) {
                 continue;
             }
-            if (i === 2) {
+            if (i === 1) {
                 continue;
             }
             var row = [];
             output.list.push(row);
-            for (let j = 1; j < data[i].length; j++) {
-                row.push(this.convertString(data[i][j], data[2][j]));
+            for (let j = 0; j < data[i].length; j++) {
+                row.push(this.convertString(data[i][j], data[1][j]));
             }
         }
         return output
