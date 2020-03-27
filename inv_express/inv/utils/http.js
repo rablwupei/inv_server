@@ -13,6 +13,8 @@ http.get = function (url, option = {}) {
     option.url = url;
     option.timeout = option.timeout || timeout;
     option.method = option.method || 'GET';
+    option.headers = option.headers || {};
+    option.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36';
     if (option.gzip !== false) {
         option.gzip = true;
     }
