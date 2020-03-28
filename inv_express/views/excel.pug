@@ -9,11 +9,12 @@ block content
             each val in result.list[0]
               th=val
         tbody
-          - for(var i = 1; i < result.list.length; i++) {
-          tr
-          - for(var j = 0; j < result.list[i].length; j++) {
-            td=result.list[i][j]
-          - }}
+          -for(var i = 1; i < result.list.length; i++) {
+            tr
+              -for(var j = 0; j < result.list[i].length; j++) {
+                td=result.list[i][j]
+              -}
+          -}
       script.
         $(function () {
           $("#table1").tablesorter();
