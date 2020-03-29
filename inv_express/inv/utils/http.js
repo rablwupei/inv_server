@@ -24,14 +24,10 @@ http.get = function (url, option = {}) {
     }
     return new Promise(function(resolve, reject) {
         request(option, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                if (isGBK) {
-                    resolve(iconv.decode(body, 'GBK'));
-                } else {
-                    resolve(body);
-                }
+            if (isGBK) {
+                resolve(iconv.decode(body, 'GBK'));
             } else {
-                reject(error);
+                resolve(body);
             }
         });
     });
