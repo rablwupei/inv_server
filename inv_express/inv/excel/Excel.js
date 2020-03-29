@@ -13,7 +13,10 @@ class DataSourceParser {
 
     get regular() {}
 
-    addRegularResult(res) {}
+    addRegularResult(res) {
+        this._regularResults.push(res);
+        this._ids.add(res[1]);
+    }
 
     *request() {}
 
@@ -33,11 +36,6 @@ class DataSourceParserTiantianjingzhi extends DataSourceParser {
 
     replaceStr(str) {
         return str.replace(this.regular, 'values["天天基金净值"]["$1"]["$2"]["$3"]')
-    }
-
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
     }
 
     *request() {
@@ -62,6 +60,86 @@ class DataSourceParserTiantianjingzhi extends DataSourceParser {
         for (let i = 0; i < this._stocks.length; i++) {
             var stock = this._stocks[i];
             value["" + stock.code] = stock.json;
+        }
+    }
+}
+
+class DataSourceParserWangyi extends DataSourceParser {
+    get key() {
+        return "网易";
+    }
+
+    get regular() {
+        return /网易\[(.*?)\]\[(.*?)\]\[(.*?)\]/g;
+    }
+
+    replaceStr(str) {
+        return str.replace(this.regular, 'values["网易"]["$1"]["$2"]["$3"]')
+    }
+
+    *request() {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var requests = [];
+        var ids = Array.from(this._ids);
+        var wangyi = require("../market/wangyi");
+        for (let i = 0; i < ids.length; i++) {
+            var code = ids[i];
+            requests.push(wangyi.get(code));
+        }
+        this._stocks = yield requests;
+    }
+
+    fillValue(values) {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var value = {};
+        values[this.key] = value;
+        for (let i = 0; i < this._stocks.length; i++) {
+            var stock = this._stocks[i];
+            value["" + stock.code] = stock.json;
+        }
+    }
+}
+
+class DataSourceParserShenjifene extends DataSourceParser {
+    get key() {
+        return "深基份额"; //深基份额[161129]
+    }
+
+    get regular() {
+        return /深基份额\[(.*?)\]/g;
+    }
+
+    replaceStr(str) {
+        return str.replace(this.regular, 'values["深基份额"]["$1"]')
+    }
+
+    *request() {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var requests = [];
+        var ids = Array.from(this._ids);
+        var shenjifene = require("../market/shenjifene");
+        for (let i = 0; i < ids.length; i++) {
+            var code = ids[i];
+            requests.push(shenjifene.get(code));
+        }
+        this._stocks = yield requests;
+    }
+
+    fillValue(values) {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var value = {};
+        values[this.key] = value;
+        for (let i = 0; i < this._stocks.length; i++) {
+            var stock = this._stocks[i];
+            value["" + stock.code] = stock.json.dqgm;
         }
     }
 }
@@ -212,6 +290,8 @@ class Excel {
             new DataSourceParserSina(),
             new DataSourceParserXueqiu(),
             new DataSourceParserXueqiuKLine(),
+            new DataSourceParserShenjifene(),
+            new DataSourceParserWangyi(),
         ];
     }
 

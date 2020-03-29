@@ -14,12 +14,8 @@ class SenjifeneStock extends AbstractStock {
     parse(text) {
         this.json = JSON.parse(text)[0].data[0];
         this.json.dqgm = this.json.dqgm.replaceAll(",", "");
-        console.log((this.json));
+        // console.log((this.json));
         // this.json = this.json.replaceAll(",", "");
-    }
-
-    saveData(db) {
-
     }
 }
 
@@ -40,8 +36,8 @@ shenjifene.get = function*(code) {
     return stock;
 };
 
-require('co')(function* () {
-    yield shenjifene.get("161129");
-});
+// require('co')(function* () {
+//     yield shenjifene.get("161129");
+// });
 
 module.exports = shenjifene;
