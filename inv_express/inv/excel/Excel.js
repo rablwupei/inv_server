@@ -1,312 +1,6 @@
 var xlsx = require('node-xlsx').default;
 var util = require("util");
-
-class DataSourceParser {
-    constructor() {
-        this._regularResults = [];
-        this._ids = new Set();
-    }
-
-    get regular() {}
-
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
-    }
-
-    *request() {}
-
-    fillValue() {}
-
-    replaceStr() {}
-}
-
-class DataSourceParserTiantianjingzhi extends DataSourceParser {
-    get key() {
-        return "天天基金净值";
-    }
-
-    get regular() {
-        return /天天基金净值\[(.*?)\]\[(.*?)\]\[(.*?)\]/g;
-    }
-
-    replaceStr(str) {
-        return str.replace(this.regular, 'values["天天基金净值"]["$1"]["$2"]["$3"]')
-    }
-
-    *request() {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var requests = [];
-        var tiantianjingzhi = require('../market/tiantianjingzhi');
-        var ids = Array.from(this._ids);
-        for (let i = 0; i < ids.length; i++) {
-            var code = ids[i];
-            requests.push(tiantianjingzhi.get(code));
-        }
-        this._stocks = yield requests;
-    }
-
-    fillValue(values) {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var value = {};
-        values[this.key] = value;
-        for (let i = 0; i < this._stocks.length; i++) {
-            var stock = this._stocks[i];
-            value["" + stock.code] = stock.json;
-        }
-    }
-}
-
-class DataSourceParserWangyi extends DataSourceParser {
-    get key() {
-        return "网易";
-    }
-
-    get regular() {
-        return /网易\[(.*?)\]\[(.*?)\]\[(.*?)\]/g;
-    }
-
-    replaceStr(str) {
-        return str.replace(this.regular, 'values["网易"]["$1"]["$2"]["$3"]')
-    }
-
-    *request() {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var requests = [];
-        var ids = Array.from(this._ids);
-        var wangyi = require("../market/wangyi");
-        for (let i = 0; i < ids.length; i++) {
-            var code = ids[i];
-            requests.push(wangyi.get(code));
-        }
-        this._stocks = yield requests;
-    }
-
-    fillValue(values) {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var value = {};
-        values[this.key] = value;
-        for (let i = 0; i < this._stocks.length; i++) {
-            var stock = this._stocks[i];
-            value["" + stock.code] = stock.json;
-        }
-    }
-}
-
-class DataSourceParserShenjifene extends DataSourceParser {
-    get key() {
-        return "深基份额"; //深基份额[161129]
-    }
-
-    get regular() {
-        return /深基份额\[(.*?)\]/g;
-    }
-
-    replaceStr(str) {
-        return str.replace(this.regular, 'values["深基份额"]["$1"]')
-    }
-
-    *request() {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var requests = [];
-        var ids = Array.from(this._ids);
-        var shenjifene = require("../market/shenjifene");
-        for (let i = 0; i < ids.length; i++) {
-            var code = ids[i];
-            requests.push(shenjifene.get(code));
-        }
-        this._stocks = yield requests;
-    }
-
-    fillValue(values) {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var value = {};
-        values[this.key] = value;
-        for (let i = 0; i < this._stocks.length; i++) {
-            var stock = this._stocks[i];
-            value["" + stock.code] = stock.json.dqgm;
-        }
-    }
-}
-
-
-class DataSourceParserShangjifene extends DataSourceParser {
-    get key() {
-        return "上基份额"; //深基份额[161129]
-    }
-
-    get regular() {
-        return /上基份额\[(.*?)\]/g;
-    }
-
-    replaceStr(str) {
-        return str.replace(this.regular, 'values["上基份额"]["$1"]')
-    }
-
-    *request() {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var Shangjifene = require("../market/shangjifene");
-        this._stock = yield new Shangjifene().get();
-    }
-
-    fillValue(values) {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var value = {};
-        values[this.key] = value;
-        for (var key in this._stock.data) {
-            value[key] = this._stock.data[key];
-        }
-    }
-}
-
-class DataSourceParserXueqiu extends DataSourceParser {
-    get key() {
-        return "雪球";
-    }
-
-    get regular() {
-        return /雪球\[(.*?)\]\[(.*?)\]/g;
-    }
-
-    replaceStr(str) {
-        return str.replace(this.regular, 'values["雪球"]["$1"]["$2"]')
-    }
-
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
-    }
-
-    *request() {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var requests = [];
-        var ids = Array.from(this._ids);
-        var Xueqiu = require('../market/xueqiu');
-        var xueqiu = new Xueqiu();
-        for (let i = 0; i < ids.length; i++) {
-            var code = ids[i];
-            requests.push(xueqiu.get(code));
-        }
-        this._stocks = yield requests;
-    }
-
-    fillValue(values) {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var value = {};
-        values[this.key] = value;
-        for (let i = 0; i < this._stocks.length; i++) {
-            var stock = this._stocks[i];
-            value["" + stock.code] = stock.json;
-        }
-    }
-}
-
-class DataSourceParserXueqiuKLine extends DataSourceParser {
-    get key() {
-        return "雪球k线";
-    }
-
-    get regular() {
-        return /雪球k线\[(.*?)\]\[(.*?)\]/g;
-    }
-
-    replaceStr(str) {
-        return str.replace(this.regular, 'values["雪球k线"]["$1"]["$2"]')
-    }
-
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
-    }
-
-    *request() {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var requests = [];
-        var ids = Array.from(this._ids);
-        var Xueqiu = require('../market/xueqiu');
-        var xueqiu = new Xueqiu();
-        for (let i = 0; i < ids.length; i++) {
-            var code = ids[i];
-            requests.push(xueqiu.getKLine(code));
-        }
-        this._stocks = yield requests;
-    }
-
-    fillValue(values) {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var value = {};
-        values[this.key] = value;
-        for (let i = 0; i < this._stocks.length; i++) {
-            var stock = this._stocks[i];
-            value["" + stock.code] = stock.item;
-        }
-    }
-}
-
-class DataSourceParserSina extends DataSourceParser {
-    get key() {
-        return "新浪";
-    }
-
-    get regular() {
-        return /新浪\[(.*?)\]\[(.*?)\]/g;
-    }
-
-    replaceStr(str) {
-        return str.replace(this.regular, 'values["新浪"]["$1"]["$2"]')
-    }
-
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
-    }
-
-    *request() {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var codes = Array.from(this._ids);
-        var codesStr = codes.join(",");
-        var sina = require('../market/sina');
-        this._stockMap = yield sina.get(codesStr);
-    }
-
-    fillValue(values) {
-        if (this._ids.size === 0) {
-            return;
-        }
-        var value = {};
-        values[this.key] = value;
-        for (const key in this._stockMap) {
-            var stock = this._stockMap[key];
-            value["" + stock.code] = stock._strs;
-        }
-    }
-}
+var fs = require('co-fs');
 
 let type_pre = "pre";
 let type_string = "string";
@@ -318,16 +12,20 @@ class Excel {
     constructor(path, debug) {
         this._debug = debug;
         this._path = path;
+    }
 
-        this._parsers = [
-            new DataSourceParserTiantianjingzhi(),
-            new DataSourceParserSina(),
-            new DataSourceParserXueqiu(),
-            new DataSourceParserXueqiuKLine(),
-            new DataSourceParserShenjifene(),
-            new DataSourceParserWangyi(),
-            new DataSourceParserShangjifene(),
-        ];
+    *init() {
+        this._parsers = [];
+        let requirePath = "./parser/";
+        let parserPath = __dirname + "/parser";
+        let files = yield fs.readdir(parserPath);
+        for (let i = 0; i < files.length; i++) {
+            let cls = require(requirePath + files[i]);
+            let parser = new cls();
+            if (parser.enable) {
+                this._parsers.push(parser);
+            }
+        }
     }
 
     skipRow(i) {
@@ -459,6 +157,7 @@ class Excel {
 
 Excel.requestResult = function*(path, debug) {
     var excel = new Excel(path, debug);
+    yield excel.init();
     excel.parse();
     yield excel.request();
     return excel.fill();

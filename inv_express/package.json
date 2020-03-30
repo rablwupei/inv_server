@@ -8,6 +8,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "co": "^4.6.0",
+    "co-fs": "^1.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
