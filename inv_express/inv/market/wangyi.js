@@ -18,7 +18,7 @@ class WangyiStock extends AbstractStock {
         value = value.replaceAll("亿", "");
         value = parseFloat(value);
         if (yiOrWan.endsWith("亿")) {
-            value = value * 1000;
+            value = value * 10000;
         }
         return value;
     }
