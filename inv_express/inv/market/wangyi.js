@@ -60,8 +60,8 @@ wangyi.get = function*(code) {
     return stock;
 };
 
-require('co')(function* () {
-    yield wangyi.get("161129");
-});
+// require('co')(function* () {
+//     yield wangyi.get("161129");
+// });
 
 module.exports = wangyi;
