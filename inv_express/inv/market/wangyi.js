@@ -12,18 +12,30 @@ class WangyiStock extends AbstractStock {
         super(code);
     }
 
+    convert(yiOrWan) {
+        let value = yiOrWan.replaceAll(",", "");
+        value = value.replaceAll("万", "");
+        value = value.replaceAll("亿", "");
+        value = parseFloat(value);
+        if (yiOrWan.endsWith("亿")) {
+            value = value * 1000;
+        }
+        return value;
+    }
+
     parse(text) {
         const cheerio = require('cheerio');
         const $ = cheerio.load(text);
-        var array = [];
+        let array = [];
+        let that = this;
         $("#fn_fund_value_trend").find("tbody").children().each(function (index, elem) {
             var obj = {};
             array[index] = obj;
             $(elem).children().each(function (index, subElem) {
                 obj[index] = $(subElem).text();
             });
-            obj["cjl"] = obj[3].replaceAll("万", "").replaceAll(",", "");
-            obj["cjje"] = obj[4].replaceAll("万", "").replaceAll(",", "");
+            obj["cjl"] = that.convert(obj[3]);
+            obj["cjje"] = that.convert(obj[4]);
             obj["hsl"] = parseFloat(obj[5].replaceAll("%", "")) / 100;
         });
         //网易[161129][0][cjl]  网易[161129][0][cjje] 网易[161129][0][hsl]

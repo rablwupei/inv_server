@@ -6,6 +6,7 @@ let type_pre = "pre";
 let type_string = "string";
 let type_float = "float";
 let type_percent = "percent";
+let type_int = "int";
 
 class Excel {
 
@@ -41,10 +42,12 @@ class Excel {
     }
 
     convertString(value, type) {
-        if (type === type_float || type === type_percent) {
+        if (type === type_float || type === type_percent || type === type_int) {
             let num = parseFloat(value);
             if (num === 0 || num) {
-                if (type === type_percent) {
+                if (type === type_int) {
+                    value = Math.round(value) + "";
+                } else if (type === type_percent) {
                     value = +(num * 100).toFixed(2) + "%";
                 } else {
                     value = +num.toFixed(4) + "";
