@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="fix">
+    <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/wangyi.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/wangyi.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,30 +68,30 @@
     <configuration name="shenjifene.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/shenjifene.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
-    <configuration name="tiantianjingzhi.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/tiantianjingzhi.js" working-dir="$PROJECT_DIR$/inv/market">
-      <method v="2" />
-    </configuration>
     <configuration name="wangyi.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/wangyi.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
     <configuration name="yingweicaiqing.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/yingweicaiqing.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
+    <configuration name="zhongzhengzhishu.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/zhongzhengzhishu.js" working-dir="$PROJECT_DIR$/inv/market">
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Node.js.bin\www" />
-      <item itemvalue="Node.js.tiantianjingzhi.js" />
       <item itemvalue="Node.js.shenjifene.js" />
       <item itemvalue="Node.js.wangyi.js" />
       <item itemvalue="Node.js.shangjifene.js" />
       <item itemvalue="Node.js.yingweicaiqing.js" />
+      <item itemvalue="Node.js.zhongzhengzhishu.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.zhongzhengzhishu.js" />
         <item itemvalue="Node.js.yingweicaiqing.js" />
         <item itemvalue="Node.js.shangjifene.js" />
         <item itemvalue="Node.js.wangyi.js" />
         <item itemvalue="Node.js.shenjifene.js" />
-        <item itemvalue="Node.js.tiantianjingzhi.js" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +131,7 @@
       <workItem from="1585545583661" duration="95000" />
       <workItem from="1585545683136" duration="2237000" />
       <workItem from="1585548209290" duration="36000" />
-      <workItem from="1585548247847" duration="2718000" />
+      <workItem from="1585548247847" duration="5265000" />
     </task>
     <task id="LOCAL-00001" summary="refactor">
       <created>1582612979848</created>
@@ -274,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585555290305</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="add yingweicaiqing">
+      <created>1585577551689</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1585577551690</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,7 +325,8 @@
     <MESSAGE value="refactor" />
     <MESSAGE value="add hide" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="add yingweicaiqing" />
+    <option name="LAST_COMMIT_MESSAGE" value="add yingweicaiqing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1133" y="234" key="#Inspections" timestamp="1585230247441">
@@ -334,11 +341,11 @@
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="396" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/36.23.1244.777@36.23.1244.777" timestamp="1585492562707" />
-    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2" timestamp="1585577529635">
+    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2" timestamp="1585577551379">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="719" y="0" width="1231" height="1000" key="CommitChangelistDialog2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585308110949" />
-    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1585577529635" />
+    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1585577551379" />
     <state x="952" y="379" key="EditFileWatcherDialog" timestamp="1582600444431">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
@@ -347,26 +354,26 @@
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
     <state x="1012" y="360" key="FileChooserDialogImpl/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1582522646740" />
-    <state width="1203" height="184" key="GridCell.Tab.0.bottom" timestamp="1585577512713">
+    <state width="1203" height="184" key="GridCell.Tab.0.bottom" timestamp="1585580667713">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.bottom/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1585577512713" />
-    <state width="1203" height="184" key="GridCell.Tab.0.center" timestamp="1585577512712">
+    <state width="1203" height="184" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1585580667713" />
+    <state width="1203" height="184" key="GridCell.Tab.0.center" timestamp="1585580667713">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.center/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1585577512712" />
-    <state width="1203" height="184" key="GridCell.Tab.0.left" timestamp="1585577512712">
+    <state width="1203" height="184" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1585580667713" />
+    <state width="1203" height="184" key="GridCell.Tab.0.left" timestamp="1585580667712">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.left/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1585577512712" />
-    <state width="1203" height="184" key="GridCell.Tab.0.right" timestamp="1585577512712">
+    <state width="1203" height="184" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1585580667712" />
+    <state width="1203" height="184" key="GridCell.Tab.0.right" timestamp="1585580667713">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.right/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1585577512712" />
+    <state width="1203" height="184" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1585580667713" />
     <state width="1203" height="229" key="GridCell.Tab.1.bottom" timestamp="1585491865277">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
@@ -437,11 +444,11 @@
     </state>
     <state x="733" y="247" key="SettingsEditor/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1582522648835" />
     <state x="91" y="34" key="SettingsEditor/36.23.1244.777@36.23.1244.777" timestamp="1585548404756" />
-    <state x="360" y="245" key="Vcs.Push.Dialog.v2" timestamp="1585555298640">
+    <state x="360" y="245" key="Vcs.Push.Dialog.v2" timestamp="1585577559776">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="714" y="309" key="Vcs.Push.Dialog.v2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585145725341" />
-    <state x="360" y="245" key="Vcs.Push.Dialog.v2/36.23.1244.777@36.23.1244.777" timestamp="1585555298640" />
+    <state x="360" y="245" key="Vcs.Push.Dialog.v2/36.23.1244.777@36.23.1244.777" timestamp="1585577559776" />
     <state x="901" y="229" width="1449" height="735" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582606464190">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
