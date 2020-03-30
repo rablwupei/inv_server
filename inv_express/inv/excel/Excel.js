@@ -2,11 +2,18 @@ var xlsx = require('node-xlsx').default;
 var util = require("util");
 var fs = require('co-fs');
 
-let type_pre = "pre";
-let type_string = "string";
-let type_float = "float";
-let type_percent = "percent";
-let type_int = "int";
+let type_pre = 0;
+let type_string = 1;
+let type_float = 2;
+let type_percent = 3;
+let type_int = 4;
+let type_values = {
+    pre : type_pre,
+    string : type_string,
+    float : type_float,
+    percent : type_percent,
+    int : type_int,
+};
 
 class Excel {
 
@@ -29,19 +36,40 @@ class Excel {
         }
     }
 
+    parseHeader() {
+        this._headerType = [];
+        this._headerHide = [];
+        let row = this._excelData[1];
+        for (let j = 0; j < row.length; j++) {
+            this._headerType[j] = type_pre;
+            let values = row[j];
+            for(let key in type_values) {
+                if (values.includes(key)) {
+                    this._headerType[j] = type_values[key];
+                    break;
+                }
+            }
+            this._headerHide[j] = false;
+            if (values.includes("hide")) {
+                this._headerHide[j] = true;
+            }
+        }
+    }
+
     skipRow(i) {
         return !this._excelData[i][0] && !this._excelData[i][1];
     }
 
     skipParse(i, j) {
-        return this._excelData[1][j] === type_pre;
+        return this._headerType[j] === type_pre;
     }
 
     skipAddVar(i, j) {
-        return this._excelData[1][j] === type_string;
+        return this._headerType[j] === type_string;
     }
 
-    convertString(value, type) {
+    convertString(i, j, value) {
+        let type = this._headerType[j];
         if (type === type_float || type === type_percent || type === type_int) {
             let num = parseFloat(value);
             if (num === 0 || num) {
@@ -60,6 +88,7 @@ class Excel {
     parse() {
         var excelData = xlsx.parse(this._path)[0].data;
         this._excelData = excelData;
+        this.parseHeader();
         this._isMatch = {};
         for (var i = 2; i < excelData.length; ++i) {
             if (this.skipRow(i)) {
@@ -151,7 +180,10 @@ class Excel {
             var row = [];
             output.list.push(row);
             for (let j = 0; j < data[i].length; j++) {
-                row.push(this.convertString(data[i][j], data[1][j]));
+                if (this._headerHide[j]) {
+                    continue;
+                }
+                row.push(this.convertString(i, j, data[i][j]));
             }
         }
         return output
