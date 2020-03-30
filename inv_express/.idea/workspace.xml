@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="neodb">
-      <change afterPath="$PROJECT_DIR$/inv/market/wangyi.js" afterDir="false" />
+    <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inv/excel/Excel.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/excel/Excel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/shenjifene.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/shenjifene.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inv/market/AbstractStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/AbstractStock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inv/market/xueqiu.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/xueqiu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/moment/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,27 +37,27 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/inv/market" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/inv/market" />
+      <recent name="D:\dev\github\inv_server\inv_express\views" />
+      <recent name="D:\dev\github\inv_server\inv_express\inv\weixin" />
+      <recent name="D:\dev\github\inv_server\inv_express\public\javascripts" />
+      <recent name="D:\dev\github\inv_server\inv_express\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\dev\github\inv_server\inv_express\inv\excel" />
       <recent name="D:\dev\github\inv_server\inv_express\inv\miaomiao" />
       <recent name="D:\dev\github\inv_server\inv_express\inv\utils" />
       <recent name="D:\dev\github\inv_server\inv_express\src" />
       <recent name="D:\dev\github\inv_server\inv_express\public\javascripts" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\dev\github\inv_server\inv_express\views" />
-      <recent name="D:\dev\github\inv_server\inv_express\inv\weixin" />
-      <recent name="D:\dev\github\inv_server\inv_express\public\javascripts" />
-      <recent name="D:\dev\github\inv_server\inv_express\src" />
-      <recent name="D:\dev\github\inv_server\inv_express\public\stylesheets" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -66,7 +66,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Node.js.bin\www">
-    <configuration name="Excel.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/excel/Excel.js" working-dir="$PROJECT_DIR$/inv/excel">
+    <configuration name="shangjifene.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/shangjifene.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
     <configuration name="shenjifene.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/shenjifene.js" working-dir="$PROJECT_DIR$/inv/market">
@@ -83,19 +83,19 @@
     </configuration>
     <list>
       <item itemvalue="Node.js.bin\www" />
-      <item itemvalue="Node.js.Excel.js" />
       <item itemvalue="Node.js.xueqiu.js" />
       <item itemvalue="Node.js.tiantianjingzhi.js" />
       <item itemvalue="Node.js.shenjifene.js" />
       <item itemvalue="Node.js.wangyi.js" />
+      <item itemvalue="Node.js.shangjifene.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.shangjifene.js" />
         <item itemvalue="Node.js.wangyi.js" />
         <item itemvalue="Node.js.shenjifene.js" />
         <item itemvalue="Node.js.tiantianjingzhi.js" />
         <item itemvalue="Node.js.xueqiu.js" />
-        <item itemvalue="Node.js.Excel.js" />
       </list>
     </recent_temporary>
   </component>
@@ -129,7 +129,8 @@
       <workItem from="1585274045965" duration="9558000" />
       <workItem from="1585478226999" duration="2040000" />
       <workItem from="1585491510499" duration="3192000" />
-      <workItem from="1585496621519" duration="3338000" />
+      <workItem from="1585496621519" duration="3651000" />
+      <workItem from="1585539478291" duration="2697000" />
     </task>
     <task id="LOCAL-00001" summary="refactor">
       <created>1582612979848</created>
@@ -229,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585497251010</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add wangyi">
+      <created>1585500870590</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1585500870590</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +278,8 @@
     <MESSAGE value="xueqiukxian" />
     <MESSAGE value="shenjifene" />
     <MESSAGE value="add cheerio" />
-    <option name="LAST_COMMIT_MESSAGE" value="add cheerio" />
+    <MESSAGE value="add wangyi" />
+    <option name="LAST_COMMIT_MESSAGE" value="add wangyi" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1133" y="234" key="#Inspections" timestamp="1585230247441">
@@ -285,11 +294,11 @@
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="396" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/36.23.1244.777@36.23.1244.777" timestamp="1585492562707" />
-    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2" timestamp="1585497249816">
+    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2" timestamp="1585500870117">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="719" y="0" width="1231" height="1000" key="CommitChangelistDialog2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585308110949" />
-    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1585497249816" />
+    <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1585500870117" />
     <state x="952" y="379" key="EditFileWatcherDialog" timestamp="1582600444431">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
@@ -298,26 +307,26 @@
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
     <state x="1012" y="360" key="FileChooserDialogImpl/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1582522646740" />
-    <state width="1203" height="184" key="GridCell.Tab.0.bottom" timestamp="1585500840268">
+    <state width="1203" height="184" key="GridCell.Tab.0.bottom" timestamp="1585542540869">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.bottom/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1585500840268" />
-    <state width="1203" height="184" key="GridCell.Tab.0.center" timestamp="1585500840268">
+    <state width="1203" height="184" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1585542540869" />
+    <state width="1203" height="184" key="GridCell.Tab.0.center" timestamp="1585542540868">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.center/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1585500840268" />
-    <state width="1203" height="184" key="GridCell.Tab.0.left" timestamp="1585500840267">
+    <state width="1203" height="184" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1585542540868" />
+    <state width="1203" height="184" key="GridCell.Tab.0.left" timestamp="1585542540867">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.left/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1585500840267" />
-    <state width="1203" height="184" key="GridCell.Tab.0.right" timestamp="1585500840268">
+    <state width="1203" height="184" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1585542540867" />
+    <state width="1203" height="184" key="GridCell.Tab.0.right" timestamp="1585542540868">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1611" height="244" key="GridCell.Tab.0.right/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585315414736" />
-    <state width="1203" height="184" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1585500840268" />
+    <state width="1203" height="184" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1585542540868" />
     <state width="1203" height="229" key="GridCell.Tab.1.bottom" timestamp="1585491865277">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
@@ -383,15 +392,16 @@
     </state>
     <state x="1583" y="292" key="RollbackChangesDialog/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585200411793" />
     <state x="772" y="233" key="RollbackChangesDialog/36.23.1244.777@36.23.1244.777" timestamp="1585494281124" />
-    <state x="733" y="247" key="SettingsEditor" timestamp="1582522648835">
-      <screen x="63" y="0" width="2497" height="1080" />
+    <state x="298" y="78" key="SettingsEditor" timestamp="1585539634074">
+      <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="733" y="247" key="SettingsEditor/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1582522648835" />
-    <state x="360" y="245" key="Vcs.Push.Dialog.v2" timestamp="1585460682545">
+    <state x="298" y="78" key="SettingsEditor/36.23.1244.777@36.23.1244.777" timestamp="1585539634074" />
+    <state x="360" y="245" key="Vcs.Push.Dialog.v2" timestamp="1585500883747">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="714" y="309" key="Vcs.Push.Dialog.v2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585145725341" />
-    <state x="360" y="245" key="Vcs.Push.Dialog.v2/36.23.1244.777@36.23.1244.777" timestamp="1585460682545" />
+    <state x="360" y="245" key="Vcs.Push.Dialog.v2/36.23.1244.777@36.23.1244.777" timestamp="1585500883747" />
     <state x="901" y="229" width="1449" height="735" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582606464190">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>

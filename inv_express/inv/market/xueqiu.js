@@ -1,5 +1,6 @@
 var AbstractStock = require('./AbstractStock');
 var util = require("util");
+var sprintf = require("sprintf-js").sprintf;
 
 class XueqiuStock extends AbstractStock {
     constructor(code) {

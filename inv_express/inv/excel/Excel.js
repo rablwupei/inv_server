@@ -1,9 +1,5 @@
 var xlsx = require('node-xlsx').default;
-var sina = require('../market/sina');
-var tiantianjingzhi = require('../market/tiantianjingzhi');
-var Xueqiu = require('../market/xueqiu');
 var util = require("util");
-var sprintf = require("sprintf-js").sprintf;
 
 class DataSourceParser {
     constructor() {
@@ -43,6 +39,7 @@ class DataSourceParserTiantianjingzhi extends DataSourceParser {
             return;
         }
         var requests = [];
+        var tiantianjingzhi = require('../market/tiantianjingzhi');
         var ids = Array.from(this._ids);
         for (let i = 0; i < ids.length; i++) {
             var code = ids[i];
@@ -144,6 +141,40 @@ class DataSourceParserShenjifene extends DataSourceParser {
     }
 }
 
+
+class DataSourceParserShangjifene extends DataSourceParser {
+    get key() {
+        return "上基份额"; //深基份额[161129]
+    }
+
+    get regular() {
+        return /上基份额\[(.*?)\]/g;
+    }
+
+    replaceStr(str) {
+        return str.replace(this.regular, 'values["上基份额"]["$1"]')
+    }
+
+    *request() {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var Shangjifene = require("../market/shangjifene");
+        this._stock = yield new Shangjifene().get();
+    }
+
+    fillValue(values) {
+        if (this._ids.size === 0) {
+            return;
+        }
+        var value = {};
+        values[this.key] = value;
+        for (var key in this._stock.data) {
+            value[key] = this._stock.data[key];
+        }
+    }
+}
+
 class DataSourceParserXueqiu extends DataSourceParser {
     get key() {
         return "雪球";
@@ -168,6 +199,7 @@ class DataSourceParserXueqiu extends DataSourceParser {
         }
         var requests = [];
         var ids = Array.from(this._ids);
+        var Xueqiu = require('../market/xueqiu');
         var xueqiu = new Xueqiu();
         for (let i = 0; i < ids.length; i++) {
             var code = ids[i];
@@ -213,6 +245,7 @@ class DataSourceParserXueqiuKLine extends DataSourceParser {
         }
         var requests = [];
         var ids = Array.from(this._ids);
+        var Xueqiu = require('../market/xueqiu');
         var xueqiu = new Xueqiu();
         for (let i = 0; i < ids.length; i++) {
             var code = ids[i];
@@ -258,6 +291,7 @@ class DataSourceParserSina extends DataSourceParser {
         }
         var codes = Array.from(this._ids);
         var codesStr = codes.join(",");
+        var sina = require('../market/sina');
         this._stockMap = yield sina.get(codesStr);
     }
 
@@ -292,6 +326,7 @@ class Excel {
             new DataSourceParserXueqiuKLine(),
             new DataSourceParserShenjifene(),
             new DataSourceParserWangyi(),
+            new DataSourceParserShangjifene(),
         ];
     }
 
