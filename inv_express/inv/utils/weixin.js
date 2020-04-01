@@ -9,9 +9,15 @@ var assert = require('assert');
 
 var weixin = {};
 
-var weixinJson = require("../../src/weixin");
-var corpID = weixinJson.corpID;
-var secret = weixinJson.secret;
+let corpID;
+let secret;
+try {
+    let weixinJson = require("../../src/weixin");
+    corpID = weixinJson.corpID;
+    secret = weixinJson.secret;
+} catch (e) {
+    console.error(e);
+}
 
 var access_token = null;
 
