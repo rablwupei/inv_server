@@ -1,5 +1,4 @@
 var ExcelReader = require("./excel/ExcelReader");
-var co = require('co');
 var sina = require('../market/sina');
 var sprintf = require("sprintf-js").sprintf;
 

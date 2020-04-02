@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
-var co = require('co');
 var Excel = require('../inv/excel/Excel');
 
 router.get('/:path', function(req, res, next) {
