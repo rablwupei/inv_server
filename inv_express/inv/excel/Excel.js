@@ -1,6 +1,6 @@
 var xlsx = require('node-xlsx').default;
 var util = require("util");
-var fs = require('co-fs');
+const { promises: fs } = require("fs");
 
 let type_pre = 0;
 let type_string = 1;
@@ -22,11 +22,11 @@ class Excel {
         this._path = path;
     }
 
-    *init() {
+    async init() {
         this._parsers = [];
         let requirePath = "./parser/";
         let parserPath = __dirname + "/parser";
-        let files = yield fs.readdir(parserPath);
+        let files = await fs.readdir(parserPath);
         for (let i = 0; i < files.length; i++) {
             let cls = require(requirePath + files[i]);
             let parser = new cls();
@@ -116,13 +116,13 @@ class Excel {
         }
     }
 
-    *request() {
+    async request() {
         var requests = [];
         for (var k = 0; k < this._parsers.length; k++) {
             var parser = this._parsers[k];
             requests.push(parser.request());
         }
-        yield requests;
+        await Promise.all(requests);
     }
 
     replaceValue(str) {
@@ -190,11 +190,11 @@ class Excel {
     }
 }
 
-Excel.requestResult = function*(path, debug) {
+Excel.requestResult = async function(path, debug) {
     var excel = new Excel(path, debug);
-    yield excel.init();
+    await excel.init();
     excel.parse();
-    yield excel.request();
+    await excel.request();
     return excel.fill();
 };
 

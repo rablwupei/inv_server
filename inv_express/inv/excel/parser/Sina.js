@@ -17,14 +17,14 @@ class DataSourceParserSina extends DataSourceParser {
         this._ids.add(res[1]);
     }
 
-    *request() {
+    async request() {
         if (this._ids.size === 0) {
             return;
         }
         var codes = Array.from(this._ids);
         var codesStr = codes.join(",");
         var sina = require('../../market/sina');
-        this._stockMap = yield sina.get(codesStr);
+        this._stockMap = await sina.get(codesStr);
     }
 
     fillValue(values) {

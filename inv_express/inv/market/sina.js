@@ -29,14 +29,14 @@ var sina = {};
 
 sina.url = "http://hq.sinajs.cn/format=text&list=";
 
-sina.get = function*(codes) {
+sina.get = async function(codes) {
     var url = codes;
     if (!url.startsWith(sina.url)) {
         url = sina.url + url;
     }
     var map = {};
     // console.log("url: " + url);
-    var body = yield http.get(url, {gzip : false, encoding : 'GBK'});
+    var body = await http.get(url, {gzip : false, encoding : 'GBK'});
     body = body.trim();
     if (!body.endsWith("FAILED")) {
         var bodyList = body.split('\n');

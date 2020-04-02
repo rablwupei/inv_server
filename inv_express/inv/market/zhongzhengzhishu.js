@@ -35,11 +35,11 @@ var m = {};
 
 m.url = "http://www.csindex.com.cn/zh-CN/indices/index-detail/%s";
 
-m.get = function*(code) {
+m.get = async function(code) {
     var url = util.format(m.url, code);
     var referer = url;
     console.log(url)
-    var body = yield http.get(url, {headers: {'Referer': referer} });
+    var body = await http.get(url, {headers: {'Referer': referer} });
     var stock = new ZhongzhengzhishuStock(code);
     stock.parse(body);
     return stock;

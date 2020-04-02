@@ -12,7 +12,7 @@ class DataSourceParserShenjifene extends DataSourceParser {
         return str.replace(this.regular, 'values["深基份额"]["$1"]')
     }
 
-    *request() {
+    async request() {
         if (this._ids.size === 0) {
             return;
         }
@@ -23,7 +23,7 @@ class DataSourceParserShenjifene extends DataSourceParser {
             var code = ids[i];
             requests.push(shenjifene.get(code));
         }
-        this._stocks = yield requests;
+        this._stocks = await Promise.all(requests);
     }
 
     fillValue(values) {

@@ -17,7 +17,7 @@ class DataSourceParserXueqiu extends DataSourceParser {
         this._ids.add(res[1]);
     }
 
-    *request() {
+    async request() {
         if (this._ids.size === 0) {
             return;
         }
@@ -29,7 +29,7 @@ class DataSourceParserXueqiu extends DataSourceParser {
             var code = ids[i];
             requests.push(xueqiu.get(code));
         }
-        this._stocks = yield requests;
+        this._stocks = await Promise.all(requests);
     }
 
     fillValue(values) {

@@ -41,7 +41,7 @@ class Result {
     }
 }
 
-Result.requestExcel = function*(name, type) {
+Result.requestExcel = async function(name, type) {
     var excel = new ExcelReader(__dirname + "/../../src/miaomiao/" + name, type);
     excel.parse();
     var codes = [];
@@ -49,7 +49,7 @@ Result.requestExcel = function*(name, type) {
     for (var i = 0; i < units.length; i++) {
         codes.push(units[i].codeStrMarket);
     }
-    var stockMap = yield sina.get(codes.join(","));
+    var stockMap = await sina.get(codes.join(","));
     var results = [];
     for (var i = 0; i < units.length; i++) {
         var unit = units[i];
@@ -70,14 +70,14 @@ Result.requestExcel = function*(name, type) {
     return {header:header.output, outputs:outputs};
 }
 
-Result.request = function*() {
-    var results = yield [
+Result.request = async function() {
+    var results = await Promise.all([
         Result.requestExcel("a.xls"),
         Result.requestExcel("a_market.xls"),
         Result.requestExcel("hk.xlsx", ExcelReader.type_miaomiaohk),
         Result.requestExcel("hk_market.xls"),
         Result.requestExcel("zhuanzhai.xlsx", ExcelReader.type_miaomiaozhuanzhai),
-    ];
+    ]);
     return results;
 };
 

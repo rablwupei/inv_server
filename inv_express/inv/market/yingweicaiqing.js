@@ -42,10 +42,10 @@ var yingweicaiqing = {};
 
 yingweicaiqing.url = "https://cn.investing.com/indices/%s-historical-data";
 
-yingweicaiqing.get = function*(code) {
+yingweicaiqing.get = async function(code) {
     var url = util.format(yingweicaiqing.url, code);
     var referer = url;
-    var body = yield http.get(url, {headers: {'Referer': referer} });
+    var body = await http.get(url, {headers: {'Referer': referer} });
     var stock = new YingweicaiqingStock(code);
     stock.parse(body);
     return stock;

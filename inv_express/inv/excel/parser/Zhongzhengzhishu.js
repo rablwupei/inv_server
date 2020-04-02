@@ -13,7 +13,7 @@ class DataSourceZhongzhengzhishu extends DataSourceParser {
         return str.replace(this.regular, 'values["中证指数"]["$1"]["$2"]')
     }
 
-    *request() {
+    async request() {
         if (this._ids.size === 0) {
             return;
         }
@@ -24,7 +24,7 @@ class DataSourceZhongzhengzhishu extends DataSourceParser {
             var code = ids[i];
             requests.push(market.get(code));
         }
-        this._stocks = yield requests;
+        this._stocks = await Promise.all(requests);
     }
 
     fillValue(values) {

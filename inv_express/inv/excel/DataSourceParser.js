@@ -21,7 +21,7 @@ class DataSourceParser {
         this._ids.add(res[1]);
     }
 
-    *request() {}
+    async request() {}
 
     fillValue() {}
 

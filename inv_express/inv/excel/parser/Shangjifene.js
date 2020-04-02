@@ -12,12 +12,12 @@ class DataSourceParserShangjifene extends DataSourceParser {
         return str.replace(this.regular, 'values["上基份额"]["$1"]')
     }
 
-    *request() {
+    async request() {
         if (this._ids.size === 0) {
             return;
         }
         var Shangjifene = require("../../market/shangjifene");
-        this._stock = yield new Shangjifene().get();
+        this._stock = await new Shangjifene().get();
     }
 
     fillValue(values) {

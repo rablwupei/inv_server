@@ -26,10 +26,10 @@ shenjifene.url = "http://www.szse.cn/api/report/ShowReport/data?" +
     "SHOWTYPE=JSON&CATALOGID=1105&TABKEY=tab1&txtkey1=%s&random=%s";
 shenjifene.referer = "http://www.szse.cn/market/fund/list/all/index.html";
 
-shenjifene.get = function*(code) {
+shenjifene.get = async function(code) {
     var url = util.format(shenjifene.url, code, Math.random());
     var referer = shenjifene.referer;
-    var body = yield http.get(url, {headers: {'Referer': referer} });
+    var body = await http.get(url, {headers: {'Referer': referer} });
     body = body.trim();
     var stock = new SenjifeneStock(code);
     stock.parse(body);

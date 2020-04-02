@@ -35,10 +35,10 @@ tiantianjingzhi.url = "http://api.fund.eastmoney.com/f10/lsjz" +
     "?callback=&fundCode=%s&pageIndex=1&pageSize=5&startDate=&endDate=&_=%s";
 tiantianjingzhi.referer = "http://fundf10.eastmoney.com/jjjz_%s.html";
 
-tiantianjingzhi.get = function*(code) {
+tiantianjingzhi.get = async function(code) {
     var url = util.format(tiantianjingzhi.url, code, Date.now());
     var referer = util.format(tiantianjingzhi.referer, code);
-    var body = yield http.get(url, {headers: {'Referer': referer} });
+    var body = await http.get(url, {headers: {'Referer': referer} });
     body = body.trim();
     var stock = new TiantianjingzhiStock(code);
     stock.parse(body);

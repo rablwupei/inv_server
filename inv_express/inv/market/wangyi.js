@@ -48,12 +48,12 @@ var wangyi = {};
 
 wangyi.url = "http://quotes.money.163.com/fund/zyjl_%s.html?start=%s&end=%s";
 
-wangyi.get = function*(code) {
+wangyi.get = async function(code) {
     var now = moment();
     var last = moment().subtract(20, 'days');
     var url = util.format(wangyi.url, code, last.format('YYYY-MM-DD'), now.format('YYYY-MM-DD'));
     var referer = url;
-    var body = yield http.get(url, {headers: {'Referer': referer} });
+    var body = await http.get(url, {headers: {'Referer': referer} });
     body = body.trim();
     var stock = new WangyiStock(code);
     stock.parse(body);

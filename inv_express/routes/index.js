@@ -4,10 +4,10 @@ var co = require('co');
 var Result = require('../inv/miaomiao/Result');
 
 router.get('/', function(req, res, next) {
-  co(function*() {
-    var results = yield Result.request();
+  (async () => {
+    var results = await Result.request();
     res.render('index', { title:'inv', results:results });
-  });
+  })();
 });
 
 module.exports = router;

@@ -13,7 +13,7 @@ class DataSourceParserWangyi extends DataSourceParser {
         return str.replace(this.regular, 'values["网易"]["$1"]["$2"]["$3"]')
     }
 
-    *request() {
+    async request() {
         if (this._ids.size === 0) {
             return;
         }
@@ -24,7 +24,7 @@ class DataSourceParserWangyi extends DataSourceParser {
             var code = ids[i];
             requests.push(wangyi.get(code));
         }
-        this._stocks = yield requests;
+        this._stocks = await Promise.all(requests);
     }
 
     fillValue(values) {
