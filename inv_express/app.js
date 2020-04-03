@@ -41,8 +41,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.StartTimer = function() {
-  require("./inv/Timer").Start()
+app.start = function() {
+  require("./inv/timer/timer").start();
+  require("./inv/db/db").connect();
 };
 
 module.exports = app;

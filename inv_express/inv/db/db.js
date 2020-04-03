@@ -1,13 +1,10 @@
 let db = {};
 
-db.init = async function() {
-    if (db.mongoose) {
-        return db.mongoose;
-    }
+db.connect = function() {
+    const info = require('../../src/mongo');
     const mongoose = require('mongoose');
     mongoose.Promise = Promise;
-    let info = require('../../src/mongo');
-    await mongoose.connect(`mongodb://${info.host}:${info.port}/${info.db}`, {
+    mongoose.connect(`mongodb://${info.host}:${info.port}/${info.db}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -15,13 +12,14 @@ db.init = async function() {
         pass: info.password,
         authSource: info.source,
     });
-    db.mongoose = mongoose;
-    return mongoose;
+    mongoose.connection.on('error', console.error.bind(console, '[mongo] connect error: '));
+    mongoose.connection.once('open', function() {
+        console.log("[mongo] connect success");
+    });
 };
 
 db.save = async function() {
-    let mongoose = await db.init();
-    console.log("connect");
+    let mongoose = require('mongoose');
     let stocksSchema = mongoose.Schema({
         code: {type: String, index: true},
         name: String,
@@ -45,9 +43,5 @@ db.save = async function() {
     console.log("ok");
 
 };
-
-(async ()=>  {
-    await db.save();
-})();
 
 module.exports = db;
