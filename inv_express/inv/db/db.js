@@ -7,9 +7,10 @@ db.init = async function() {
     const mongoose = require('mongoose');
     mongoose.Promise = Promise;
     let info = require('../../src/mongo');
-    await mongoose.connect(`mongodb://localhost:${info.port}/${info.db}`, {
+    await mongoose.connect(`mongodb://${info.host}:${info.port}/${info.db}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useCreateIndex: true,
         user: info.user,
         pass: info.password,
         authSource: info.source,
@@ -19,17 +20,33 @@ db.init = async function() {
 };
 
 db.save = async function() {
-    var mongoose = await db.init();
-    var kittySchema = mongoose.Schema({
-        name: [String],
-        name1: String,
-        date : Date,
+    let mongoose = await db.init();
+    console.log("connect");
+    let stocksSchema = mongoose.Schema({
+        code: {type: String, index: true},
+        name: String,
+        data: [{
+            price: Number,
+            date: Date,
+        }],
     });
-    var Kitten = mongoose.model('Kitten', kittySchema);
-    await new Kitten({name : ["abcccc"]}).save();
+    let Stocks = mongoose.model('Stocks', stocksSchema, 'Stocks');
+    let stocks = new Stocks({
+        code: "170020",
+        name: "原油期货",
+        data: [
+            { price: 1.1, date: new Date() },
+        ],
+    });
+    await Stocks.deleteMany({});
+    await stocks.save();
+    stocks.data.unshift({ abc:1.0, price: 1.1, date: new Date() });
+    await stocks.save();
     console.log("ok");
+
 };
-(()=> async function () {
+
+(async ()=>  {
     await db.save();
 })();
 
