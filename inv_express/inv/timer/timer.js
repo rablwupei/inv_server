@@ -1,4 +1,4 @@
-var Timer = {};
+var timer = {};
 
 // Seconds: 0-59
 // Minutes: 0-59
@@ -7,7 +7,7 @@ var Timer = {};
 // Months: 0-11 (Jan-Dec)
 // Day of Week: 0-6 (Sun-Sat)
 
-Timer.Start = function () {
+timer.start = function () {
     var CronJob = require('cron').CronJob;
     new CronJob('0 0 14 * * 1-5', async() => {
         var http = require("./utils/http");
@@ -26,4 +26,4 @@ Timer.Start = function () {
     }).start();
 };
 
-module.exports = Timer;
+module.exports = timer;
