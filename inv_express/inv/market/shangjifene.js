@@ -22,7 +22,6 @@ class Shangjifene {
         var option = {};
         option.url = 'http://www.sse.com.cn/market/funddata/volumn/lofvolumn/';
         option.headers = {};
-        option.emptyUserAgent = true;
         option.headers['Referer'] = option.url;
         return option;
     }
