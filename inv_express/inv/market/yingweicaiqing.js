@@ -34,6 +34,7 @@ class YingweicaiqingStock extends AbstractStock {
             }
         });
         this.array = array;
+        console.log(array);
     }
 }
 
@@ -72,7 +73,17 @@ class yingweicaiqing {
     async get(code) {
         var that = this;
         var url = "https://cn.investing.com/indices/%s-historical-data";
-        // var request = await this.getRequest();
+        var option = that.getOption();
+        option.url = util.format(url, code);
+        var body = await http.get(option.url, option);
+        var stock = new YingweicaiqingStock(code);
+        stock.parse(body);
+        return stock;
+    }
+
+    async getETF(code) {
+        var that = this;
+        var url = "https://cn.investing.com/etfs/%s-historical-data";
         var option = that.getOption();
         option.url = util.format(url, code);
         var body = await http.get(option.url, option);
@@ -83,8 +94,8 @@ class yingweicaiqing {
 
 }
 
-// require('co')(function* () {
-//     yield yingweicaiqing.get("dj-select-reit");
-// });
+// (async () => {
+//     await new yingweicaiqing().getETF("source-us-consumer-discretnry");
+// })();
 
 module.exports = yingweicaiqing;
