@@ -34,7 +34,6 @@ class YingweicaiqingStock extends AbstractStock {
             }
         });
         this.array = array;
-        console.log(array);
     }
 }
 

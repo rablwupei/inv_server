@@ -43,7 +43,7 @@ app.use(function(err, req, res, next) {
 
 app.start = function() {
   require("./inv/timer/timer").start();
-  require("./inv/db/db").connect();
+  // require("./inv/db/db").connect();
 };
 
 module.exports = app;
