@@ -24,6 +24,9 @@ class DataSourceParserWangyi extends DataSourceParser {
             var code = ids[i];
             requests.push(wangyi.get(code));
         }
+        // for(var request of requests) {
+        //     this._stocks.push(await request);
+        // }
         this._stocks = await Promise.all(requests);
     }
 

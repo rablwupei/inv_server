@@ -3,6 +3,7 @@
  */
 
 var AbstractStock = require('./AbstractStock');
+var iconv = require('iconv-lite');
 
 class SinaStock extends AbstractStock {
     constructor(code) {
@@ -36,9 +37,10 @@ sina.get = async function(codes) {
     }
     var map = {};
     // console.log("url: " + url);
-    var body = await http.get(url, {gzip : false, encoding : 'GBK'});
-    body = body.trim();
+    var body = await http.get(url, {encoding: null});
+    body = iconv.decode(body, 'GBK');
     if (!body.endsWith("FAILED")) {
+        body = body.trim();
         var bodyList = body.split('\n');
         for (var i = 0; i < bodyList.length; i++) {
             var stockStrs = bodyList[i].split('=');

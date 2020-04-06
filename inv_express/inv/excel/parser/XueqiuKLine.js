@@ -1,5 +1,5 @@
-let DataSourceParser = require('../DataSourceParser');
-class DataSourceParserXueqiuKLine extends DataSourceParser {
+let DataSourceParserXueqiu = require('./Xueqiu');
+class DataSourceParserXueqiuKLine extends DataSourceParserXueqiu {
     get key() {
         return "雪球k线";
     }
@@ -23,12 +23,14 @@ class DataSourceParserXueqiuKLine extends DataSourceParser {
         }
         var requests = [];
         var ids = Array.from(this._ids);
-        var Xueqiu = require('../../market/xueqiu');
-        var xueqiu = new Xueqiu();
+        var xueqiu = DataSourceParserXueqiuKLine.getXueqiuRequest();
         for (let i = 0; i < ids.length; i++) {
             var code = ids[i];
             requests.push(xueqiu.getKLine(code));
         }
+        // for(var request of requests) {
+        //     this._stocks.push(await request);
+        // }
         this._stocks = await Promise.all(requests);
     }
 

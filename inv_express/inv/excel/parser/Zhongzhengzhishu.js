@@ -24,6 +24,9 @@ class DataSourceZhongzhengzhishu extends DataSourceParser {
             var code = ids[i];
             requests.push(market.get(code));
         }
+        // for(var request of requests) {
+        //     this._stocks.push(await request);
+        // }
         this._stocks = await Promise.all(requests);
     }
 

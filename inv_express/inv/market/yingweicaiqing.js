@@ -38,18 +38,50 @@ class YingweicaiqingStock extends AbstractStock {
 }
 
 var http = require('../utils/http');
-var yingweicaiqing = {};
 
-yingweicaiqing.url = "https://cn.investing.com/indices/%s-historical-data";
+class yingweicaiqing {
 
-yingweicaiqing.get = async function(code) {
-    var url = util.format(yingweicaiqing.url, code);
-    var referer = url;
-    var body = await http.get(url, {headers: {'Referer': referer} });
-    var stock = new YingweicaiqingStock(code);
-    stock.parse(body);
-    return stock;
-};
+    getOption() {
+        var option = {};
+        option.url = "https://cn.investing.com";
+        option.headers = {};
+        option.headers['Referer'] = option.url;
+        return option;
+    }
+
+    async getRequest() {
+        var that = this;
+        if (that._request) {
+            return that._request;
+        }
+        if (that._requestStart) {
+            while(!that._request) {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            return that._request;
+        }
+        that._requestStart = true;
+        var request = require('request');
+        request = request.defaults({jar:request.jar()});
+        var option = that.getOption();
+        await http.get(option.url, option, request);
+        that._request = request;
+        return that._request;
+    }
+
+    async get(code) {
+        var that = this;
+        var url = "https://cn.investing.com/indices/%s-historical-data";
+        // var request = await this.getRequest();
+        var option = that.getOption();
+        option.url = util.format(url, code);
+        var body = await http.get(option.url, option);
+        var stock = new YingweicaiqingStock(code);
+        stock.parse(body);
+        return stock;
+    }
+
+}
 
 // require('co')(function* () {
 //     yield yingweicaiqing.get("dj-select-reit");

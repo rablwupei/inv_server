@@ -46,12 +46,13 @@ class WangyiStock extends AbstractStock {
 var http = require('../utils/http');
 var wangyi = {};
 
-wangyi.url = "http://quotes.money.163.com/fund/zyjl_%s.html?start=%s&end=%s";
+wangyi.url = "http://quotes.money.163.com/fund/zyjl_%s.html";
 
 wangyi.get = async function(code) {
-    var now = moment();
-    var last = moment().subtract(20, 'days');
-    var url = util.format(wangyi.url, code, last.format('YYYY-MM-DD'), now.format('YYYY-MM-DD'));
+    // var now = moment();
+    // var last = moment().subtract(3, 'month');
+    // var url = util.format(wangyi.url, code, last.format('YYYY-MM-DD'), now.format('YYYY-MM-DD'));
+    var url = util.format(wangyi.url, code);
     var referer = url;
     var body = await http.get(url, {headers: {'Referer': referer} });
     body = body.trim();
@@ -60,8 +61,8 @@ wangyi.get = async function(code) {
     return stock;
 };
 
-// require('co')(function* () {
-//     yield wangyi.get("161129");
-// });
+// (async ()=> {
+//     await wangyi.get("161129");
+// })();
 
 module.exports = wangyi;

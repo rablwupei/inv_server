@@ -3,6 +3,7 @@ class DataSourceParser {
     constructor() {
         this._regularResults = [];
         this._ids = new Set();
+        this._stocks = [];
     }
 
     get enable() {

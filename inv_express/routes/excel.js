@@ -10,9 +10,11 @@ router.get('/:path', function(req, res, next) {
       (async () => {
         let result = await Excel.requestResult(path, req.query.debug);
         res.render('excel', { title: req.params.path, result:result });
-      })();
+      })().catch(function (e) {
+        res.status(500).send(e);
+      });
     } else {
-      res.sendStatus(404);
+      res.status(404).send("not found");
     }
   });
 });

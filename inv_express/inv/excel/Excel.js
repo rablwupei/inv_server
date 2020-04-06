@@ -121,6 +121,7 @@ class Excel {
         for (var k = 0; k < this._parsers.length; k++) {
             var parser = this._parsers[k];
             requests.push(parser.request());
+            // await parser.request();
         }
         await Promise.all(requests);
     }

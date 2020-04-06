@@ -15,6 +15,7 @@ db.connect = function() {
     mongoose.connection.on('error', console.error.bind(console, '[mongo] connect error: '));
     mongoose.connection.once('open', function() {
         console.log("[mongo] connect success");
+        require('./DBExcel').exec();
     });
 };
 
@@ -41,7 +42,6 @@ db.save = async function() {
     stocks.data.unshift({ abc:1.0, price: 1.1, date: new Date() });
     await stocks.save();
     console.log("ok");
-
 };
 
 module.exports = db;

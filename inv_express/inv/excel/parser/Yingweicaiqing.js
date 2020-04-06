@@ -18,12 +18,16 @@ class DataSourceParserYingweicaiqing extends DataSourceParser {
             return;
         }
         var requests = [];
-        var market = require('../../market/yingweicaiqing');
+        var Market = require('../../market/yingweicaiqing');
+        var market = new Market();
         var ids = Array.from(this._ids);
         for (let i = 0; i < ids.length; i++) {
             var code = ids[i];
             requests.push(market.get(code));
         }
+        // for(var request of requests) {
+        //     this._stocks.push(await request);
+        // }
         this._stocks = await Promise.all(requests);
     }
 

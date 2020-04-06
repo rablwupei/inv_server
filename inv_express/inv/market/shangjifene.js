@@ -1,5 +1,6 @@
 var AbstractStock = require('./AbstractStock');
 var util = require("util");
+var http = require("../utils/http");
 
 class ShangjifeneStock extends AbstractStock {
     constructor(code) {
@@ -21,43 +22,36 @@ class Shangjifene {
         var option = {};
         option.url = 'http://www.sse.com.cn/market/funddata/volumn/lofvolumn/';
         option.headers = {};
-        option.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36';
+        option.emptyUserAgent = true;
         option.headers['Referer'] = option.url;
-        option.gzip = true;
         return option;
     }
 
-    getRequest(callback) {
+    async getRequest() {
         var that = this;
         if (that._request) {
-            callback(that._request);
-            return;
+            return that._request;
         }
         var request = require('request');
         request = request.defaults({jar:request.jar()});
-        var option = this.getOption();
-        request(option, function () {
-            that._request = request;
-            callback(that._request);
-        });
+        var option = that.getOption();
+        await http.get(option.url, option, request);
+        that._request = request;
+        return that._request;
     }
 
-    get() {
+    async get() {
         var that = this;
         var url = "http://query.sse.com.cn/commonQuery.do?&jsonCallBack=&" +
             "sqlId=COMMON_SSE_FUND_LOF_SCALE_CX_S&pageHelp.pageSize=10000&FILEDATE=&_=%s";
-        return new Promise(function(resolve, reject) {
-            that.getRequest(function (request) {
-                var option = that.getOption();
-                option.url = util.format(url, Date.now());
-                request(option, function (error, response, body){
-                    body = body.trim();
-                    var stock = new ShangjifeneStock();
-                    stock.parse(body);
-                    resolve(stock);
-                });
-            })
-        });
+        var request = await this.getRequest();
+        var option = that.getOption();
+        option.url = util.format(url, Date.now());
+        var body = await http.get(option.url, option, request);
+        body = body.trim();
+        var stock = new ShangjifeneStock();
+        stock.parse(body);
+        return stock;
     }
 
 }

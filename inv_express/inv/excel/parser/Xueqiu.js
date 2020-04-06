@@ -12,6 +12,11 @@ class DataSourceParserXueqiu extends DataSourceParser {
         return str.replace(this.regular, 'values["雪球"]["$1"]["$2"]')
     }
 
+    static getXueqiuRequest() {
+        var Xueqiu = require('../../market/xueqiu');
+        return new Xueqiu();
+    }
+
     addRegularResult(res) {
         this._regularResults.push(res);
         this._ids.add(res[1]);
@@ -23,12 +28,14 @@ class DataSourceParserXueqiu extends DataSourceParser {
         }
         var requests = [];
         var ids = Array.from(this._ids);
-        var Xueqiu = require('../../market/xueqiu');
-        var xueqiu = new Xueqiu();
+        var xueqiu = DataSourceParserXueqiu.getXueqiuRequest();
         for (let i = 0; i < ids.length; i++) {
             var code = ids[i];
             requests.push(xueqiu.get(code));
         }
+        // for(var request of requests) {
+        //     this._stocks.push(await request);
+        // }
         this._stocks = await Promise.all(requests);
     }
 
@@ -44,4 +51,6 @@ class DataSourceParserXueqiu extends DataSourceParser {
         }
     }
 }
+
+
 module.exports = DataSourceParserXueqiu;
