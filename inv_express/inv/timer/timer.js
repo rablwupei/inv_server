@@ -9,15 +9,14 @@ var timer = {};
 
 timer.start = function () {
     var CronJob = require('cron').CronJob;
-    new CronJob('0 0 14 * * 1-5', async() => {
-        var http = require("./utils/http");
+    new CronJob('00 00 14 * * 1-5', async() => {
+        var http = require("../utils/http");
         var body = await http.get("https://xueqiu.com/S/SZ161716");
         body = body.match(/溢价率：&lt;span&gt;(-?\d+\.\d+)%/);
-        console.log(body);
         var value = parseFloat(body[1]);
         var limit = 0.2;
         if (value && value > limit) {
-            var weixin = require("./utils/weixin");
+            var weixin = require("../utils/weixin");
             weixin.send({
                 message : "招商双债(161716)溢价率 " + value + "% > " + limit + "%",
                 touser : "@all",
