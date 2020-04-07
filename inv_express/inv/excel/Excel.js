@@ -159,8 +159,12 @@ class Excel {
                 if (this._debug) {
                     debug.push(valuesStr + data[i][j])
                 }
-                // console.log(valuesStr + data[i][j]);
-                data[i][j] = eval(valuesStr + data[i][j]);
+                try {
+                    // console.log(valuesStr + data[i][j]);
+                    data[i][j] = eval(valuesStr + data[i][j]);
+                } catch (e) {
+                    data[i][j] = "?";
+                }
                 if (this._debug) {
                     debug.push(data[0][j] + ": " + data[i][j])
                 }

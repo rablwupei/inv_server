@@ -13,10 +13,6 @@ let stocksSchema = mongoose.Schema({
 
 let Stocks = mongoose.model('Stocks', stocksSchema, 'Stocks');
 
-Array.prototype.insert = function ( index, item ) {
-    this.splice( index, 0, item );
-};
-
 Stocks.saveDBUnit = function(dbUnit) {
     let code = dbUnit.code;
     let name = dbUnit.name;
@@ -39,6 +35,9 @@ Stocks.saveDBUnit = function(dbUnit) {
             } else {
                 value.data.insert(0, stock);
             }
+            while (value.data.length > 5) {
+                value.data.pop();
+            }
             value.save(function (err) {
                 if (err) {
                     reject(err);
@@ -48,6 +47,17 @@ Stocks.saveDBUnit = function(dbUnit) {
             });
         })
     });
+};
+
+Stocks.loadDBUnit = async function(ids) {
+    let map = {};
+    for (let id of ids) {
+        let unit = await Stocks.findOne({code: id}).exec();
+        if (unit) {
+            map[id] = unit.data;
+        }
+    }
+    return map;
 };
 
 module.exports = Stocks;
