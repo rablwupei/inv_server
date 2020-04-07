@@ -12,11 +12,6 @@ class DataSourceParserSina extends DataSourceParser {
         return str.replace(this.regular, 'values["新浪"]["$1"]["$2"]')
     }
 
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
-    }
-
     async request() {
         if (this._ids.size === 0) {
             return;
@@ -25,6 +20,13 @@ class DataSourceParserSina extends DataSourceParser {
         var codesStr = codes.join(",");
         var sina = require('../../market/sina');
         this._stockMap = await sina.get(codesStr);
+    }
+
+    getDBObject() {
+        for (let key in this._stockMap) {
+            return this._stockMap[key];
+        }
+        return null;
     }
 
     fillValue(values) {

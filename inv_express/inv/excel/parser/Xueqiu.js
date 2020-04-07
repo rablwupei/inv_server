@@ -17,11 +17,6 @@ class DataSourceParserXueqiu extends DataSourceParser {
         return new Xueqiu();
     }
 
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
-    }
-
     async request() {
         if (this._ids.size === 0) {
             return;

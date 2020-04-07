@@ -12,11 +12,6 @@ class DataSourceParserXueqiuKLine extends DataSourceParserXueqiu {
         return str.replace(this.regular, 'values["雪球k线"]["$1"]["$2"]')
     }
 
-    addRegularResult(res) {
-        this._regularResults.push(res);
-        this._ids.add(res[1]);
-    }
-
     async request() {
         if (this._ids.size === 0) {
             return;

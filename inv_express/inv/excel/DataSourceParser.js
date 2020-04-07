@@ -1,7 +1,6 @@
 
 class DataSourceParser {
     constructor() {
-        this._regularResults = [];
         this._ids = new Set();
         this._stocks = [];
     }
@@ -17,8 +16,11 @@ class DataSourceParser {
         return null;
     }
 
+    getDBObject() {
+        throw new Error("not implement");
+    }
+
     addRegularResult(res) {
-        this._regularResults.push(res);
         this._ids.add(res[1]);
     }
 

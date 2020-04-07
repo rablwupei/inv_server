@@ -19,29 +19,4 @@ db.connect = function() {
     });
 };
 
-db.save = async function() {
-    let mongoose = require('mongoose');
-    let stocksSchema = mongoose.Schema({
-        code: {type: String, index: true},
-        name: String,
-        data: [{
-            price: Number,
-            date: Date,
-        }],
-    });
-    let Stocks = mongoose.model('Stocks', stocksSchema, 'Stocks');
-    let stocks = new Stocks({
-        code: "170020",
-        name: "原油期货",
-        data: [
-            { price: 1.1, date: new Date() },
-        ],
-    });
-    await Stocks.deleteMany({});
-    await stocks.save();
-    stocks.data.unshift({ abc:1.0, price: 1.1, date: new Date() });
-    await stocks.save();
-    console.log("ok");
-};
-
 module.exports = db;

@@ -12,15 +12,11 @@ String.prototype.replaceAll = function (FindText, RepText) {
 
 class AbstractStock {
     constructor(code) {
-        this._code = code;
+        this.code = code;
         this.name = '';
         this.cur = 0;
         this.change = 0;
         this.percent = 0;
-    }
-
-    get code() {
-        return this._code;
     }
 
     get curStr() {

@@ -24,6 +24,7 @@ class Excel {
 
     async init() {
         this._parsers = [];
+        this._parserClasses = [];
         let requirePath = "./parser/";
         let parserPath = __dirname + "/parser";
         let files = await fs.readdir(parserPath);
@@ -32,6 +33,7 @@ class Excel {
             let parser = new cls();
             if (parser.enable) {
                 this._parsers.push(parser);
+                this._parserClasses.push(cls);
             }
         }
     }
