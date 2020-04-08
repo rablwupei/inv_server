@@ -5,40 +5,26 @@ class DataSourceParserShenjifene extends DataSourceParser {
     }
 
     get regular() {
-        return /深基份额\[(.*?)\]/g;
+        return /深基份额\[(.*?)\]\[(.*?)\]/g;
     }
 
     replaceStr(str) {
-        return str.replace(this.regular, 'values["深基份额"]["$1"]')
+        return str.replace(this.regular, 'values["深基份额"]["$1"]["$2"]')
     }
 
     async request() {
         if (this._ids.size === 0) {
             return;
         }
-        var requests = [];
-        var ids = Array.from(this._ids);
-        var shenjifene = require("../../market/shenjifene");
-        for (let i = 0; i < ids.length; i++) {
-            var code = ids[i];
-            requests.push(shenjifene.get(code));
-        }
-        // for(var request of requests) {
-        //     this._stocks.push(await request);
-        // }
-        this._stocks = await Promise.all(requests);
+        let shenjifene = require("../../market/shenjifeneExcel");
+        this._stockMap = await shenjifene.get();
     }
 
     fillValue(values) {
         if (this._ids.size === 0) {
             return;
         }
-        var value = {};
-        values[this.key] = value;
-        for (let i = 0; i < this._stocks.length; i++) {
-            var stock = this._stocks[i];
-            value["" + stock.code] = stock.json.dqgm;
-        }
+        values[this.key] = this._stockMap;
     }
 }
 module.exports = DataSourceParserShenjifene;

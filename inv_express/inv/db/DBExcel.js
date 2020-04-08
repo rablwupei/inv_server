@@ -11,9 +11,9 @@ class DBUnit {
     }
 
     startTimer() {
-        this.startRequestAndSave().catch(function(error) {
-            console.error(error);
-        });
+        // this.startRequestAndSave().catch(function(error) {
+        //     console.error(error);
+        // });
     }
 
     async startRequestAndSave() {

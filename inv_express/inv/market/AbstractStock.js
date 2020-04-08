@@ -8,6 +8,10 @@ var sprintf = require("sprintf-js").sprintf;
 class AbstractStock {
     constructor(code) {
         this.code = code;
+        // this.name = '';
+        // this.cur = 0;
+        // this.change = 0;
+        // this.percent = 0;
     }
 
     get curStr() {
