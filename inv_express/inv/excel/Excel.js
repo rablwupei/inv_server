@@ -159,17 +159,19 @@ class Excel {
                 if (this._debug) {
                     debug.push(valuesStr + data[i][j])
                 }
+                let evalSuccess = true;
                 try {
                     // console.log(valuesStr + data[i][j]);
                     data[i][j] = eval(valuesStr + data[i][j]);
                 } catch (e) {
                     data[i][j] = "?";
+                    evalSuccess = false;
+                }
+                if (!this.skipAddVar(i, j) && evalSuccess) {
+                    valuesStr += util.format("let %s = %s; ", data[0][j], data[i][j]);
                 }
                 if (this._debug) {
                     debug.push(data[0][j] + ": " + data[i][j])
-                }
-                if (!this.skipAddVar(i, j)) {
-                    valuesStr += util.format("let %s = %s; ", data[0][j], data[i][j]);
                 }
             }
             if (this._debug) {

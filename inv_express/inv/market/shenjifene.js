@@ -1,11 +1,6 @@
 var AbstractStock = require('./AbstractStock');
 var util = require("util");
 
-String.prototype.replaceAll = function (FindText, RepText) {
-    regExp = new RegExp(FindText, "g");
-    return this.replace(regExp, RepText);
-};
-
 class SenjifeneStock extends AbstractStock {
     constructor(code) {
         super(code);

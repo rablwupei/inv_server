@@ -5,18 +5,9 @@
 var util = require('util');
 var sprintf = require("sprintf-js").sprintf;
 
-String.prototype.replaceAll = function (FindText, RepText) {
-    regExp = new RegExp(FindText, "g");
-    return this.replace(regExp, RepText);
-};
-
 class AbstractStock {
     constructor(code) {
         this.code = code;
-        this.name = '';
-        this.cur = 0;
-        this.change = 0;
-        this.percent = 0;
     }
 
     get curStr() {
