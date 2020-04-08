@@ -3,32 +3,38 @@ let xlsx = require('node-xlsx').default;
 let Stocks = require('./Stocks');
 
 class DBUnit {
+    constructor() {
+        this.parser = null;
+    }
 
-    parse(table, parser) {
+    parse(table) {
         this.code = table[0];
         this.name = table[1];
-        this.parser = parser;
+        this.time = table[2];
     }
 
     startTimer() {
-        // this.startRequestAndSave().catch(function(error) {
-        //     console.error(error);
-        // });
+        let CronJob = require('cron').CronJob;
+        new CronJob(this.time, () => {
+            this.startRequestAndSave().catch(function(error) {
+                console.error(error);
+            });
+        }).start();
     }
 
     async startRequestAndSave() {
         await this.parser.request();
         this.stock = this.parser.getDBObject();
-        await Stocks.saveDBUnit(this);
+        await Stocks.saveOne(this.code, this.name, this.stock);
     }
-
 }
 
 class DBExcel extends Excel {
 
     constructor(path, debug) {
         super(path, debug);
-
+        this.defTimers = {};
+        this.defTimers["#001"] = { callback: require('../market/shenjifeneExcel').startTimer };
     }
 
     parse() {
@@ -39,18 +45,29 @@ class DBExcel extends Excel {
             if (this.skipRow(i)) {
                 continue;
             }
-            let cell = excelData[i][3];
-            if (cell) {
+            let code = excelData[i][0];
+            let name = excelData[i][1];
+            let time = excelData[i][2];
+            let src = excelData[i][3];
+            let defTimer = this.defTimers[code];
+            if (defTimer) {
+                defTimer.code = code;
+                defTimer.name = name;
+                defTimer.time = time;
+                continue;
+            }
+            if (src) {
                 let process = false;
                 for (let k = 0; k < this._parserClasses.length && !process; k++) {
                     let cls = this._parserClasses[k];
                     let parser = new cls();
                     if (parser.regular) {
-                        let matches = (cell + "[0]").matchAll(parser.regular);
+                        let matches = (src + "[0]").matchAll(parser.regular);
                         for (const match of matches) {
                             parser.addRegularResult(match);
                             let dbUnit = new DBUnit();
-                            dbUnit.parse(excelData[i], parser);
+                            dbUnit.parser = parser;
+                            dbUnit.parse(excelData[i]);
                             this.dbUnits.push(dbUnit);
                             process = true;
                             break;
@@ -64,6 +81,12 @@ class DBExcel extends Excel {
     startTimer() {
         for (let unit of this.dbUnits) {
             unit.startTimer();
+        }
+        for (let key in this.defTimers) {
+            let defTimer = this.defTimers[key];
+            let CronJob = require('cron').CronJob;
+            new CronJob(defTimer.time, defTimer.callback).start();
+            console.log("defTimer: " + JSON.stringify(defTimer));
         }
     }
 

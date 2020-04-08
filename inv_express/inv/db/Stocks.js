@@ -7,16 +7,14 @@ let stocksSchema = mongoose.Schema({
     data: [{
         cur: Number,
         percent: Number,
+        share: Number,
         date: Date,
     }],
 });
 
 let Stocks = mongoose.model('Stocks', stocksSchema, 'Stocks');
 
-Stocks.saveDBUnit = function(dbUnit) {
-    let code = dbUnit.code;
-    let name = dbUnit.name;
-    let stock = dbUnit.stock;
+Stocks.saveOne = function(code, name, stock) {
     return new Promise(function (resolve, reject) {
         Stocks.findOne({code: code}, function (err, value) {
             if (err) {
@@ -28,6 +26,8 @@ Stocks.saveDBUnit = function(dbUnit) {
                 value.code = code;
                 value.name = name;
                 value.data = [];
+            } else {
+                value.name = name;
             }
             stock.date = new Date();
             if (value.data.length > 0 && moment(stock.date).isSame(moment(value.data[0].date), 'day') ) {
@@ -49,12 +49,12 @@ Stocks.saveDBUnit = function(dbUnit) {
     });
 };
 
-Stocks.loadDBUnit = async function(ids) {
+Stocks.loadMapFromCodes = async function(codes) {
     let map = {};
-    for (let id of ids) {
-        let unit = await Stocks.findOne({code: id}).exec();
+    for (let code of codes) {
+        let unit = await Stocks.findOne({code: code}).exec();
         if (unit) {
-            map[id] = unit.data;
+            map[code] = unit.data;
         }
     }
     return map;

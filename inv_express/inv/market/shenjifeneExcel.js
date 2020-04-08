@@ -12,6 +12,7 @@ class ShenjifeneExcelStock extends AbstractStock {
         this.code = line[0];
         this.name = line[1];
         this.share = parseFloat(line[5].replaceAll(",", "")) / 10000;
+        this.type = line[2]; //ETF, LOF, 分级基金, 封闭式基金
     }
 }
 
@@ -34,6 +35,23 @@ shenjifeneExcel.get = async function() {
         map[stock.code] = stock;
     }
     return map;
+};
+
+shenjifeneExcel.startTimer = function() {
+    (async ()=> {
+        let map = await shenjifeneExcel.get();
+        for (let key in map) {
+            let stock = map[key];
+            if (stock.type == "LOF") {
+                require('../db/Stocks').saveOne(stock.code, stock.name, stock).catch(function (e) {
+                    let json = JSON.stringify(stock);
+                    console.error(`stock save error. stock: ${json}, error: ${e}`);
+                });
+            }
+        }
+    })().catch(function(e) {
+        console.error(e);
+    })
 };
 
 // (async () => {

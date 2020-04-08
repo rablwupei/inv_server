@@ -26,11 +26,6 @@ class AbstractStock {
         }
     }
 
-    toString() {
-        return sprintf("%s - %f (%s)",
-            this.name, this.cur, this.percentStr);
-    }
-
 }
 
 module.exports = AbstractStock;

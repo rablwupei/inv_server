@@ -18,8 +18,8 @@ class DataSourceParserDB extends DataSourceParser {
         if (this._ids.size === 0) {
             return;
         }
-        var ids = Array.from(this._ids);
-        this._map = await Stocks.loadDBUnit(ids);
+        let ids = Array.from(this._ids);
+        this._map = await Stocks.loadMapFromCodes(ids);
     }
 
     fillValue(values) {

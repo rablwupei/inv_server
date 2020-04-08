@@ -9,7 +9,7 @@ var timer = {};
 
 timer.start = function () {
     var CronJob = require('cron').CronJob;
-    new CronJob('00 00 14 * * 1-5', async() => {
+    new CronJob('0 0 14 * * 1-5', async() => {
         var http = require("../utils/http");
         var body = await http.get("https://xueqiu.com/S/SZ161716");
         body = body.match(/溢价率：&lt;span&gt;(-?\d+\.\d+)%/);
