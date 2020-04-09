@@ -9,13 +9,21 @@ class AbstractStock {
     constructor(code) {
         this.code = code;
         // this.name = '';
-        // this.cur = 0;
+        // this.price = 0;
         // this.change = 0;
         // this.percent = 0;
     }
 
+    parsePercentDivisor100(value) {
+        let newvalue = value + '';
+        newvalue = newvalue.replaceAll(",", "");
+        newvalue = newvalue.replaceAll("%", "");
+        newvalue = parseFloat(newvalue);
+        return newvalue / 100;
+    }
+
     get curStr() {
-        return sprintf('%.2f', this.cur);
+        return sprintf('%.2f', this.price);
     }
 
     get percentStr() {

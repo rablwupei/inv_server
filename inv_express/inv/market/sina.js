@@ -14,12 +14,12 @@ class SinaStock extends AbstractStock {
         this._strs = text.split(',');
         if (this.code.startsWith('hk')) {
             this.name = this._strs[1];
-            this.cur = parseFloat(this._strs[6]);
+            this.price = parseFloat(this._strs[6]);
             this.percent = parseFloat(this._strs[8]) / 100;
         } else {
             this.name = this._strs[0];
-            this.cur = parseFloat(this._strs[3]);
-            this.percent = this.cur / parseFloat(this._strs[2]) - 1;
+            this.price = parseFloat(this._strs[3]);
+            this.percent = this.price / parseFloat(this._strs[2]) - 1;
         }
     }
 

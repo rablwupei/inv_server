@@ -5,7 +5,7 @@ let stocksSchema = mongoose.Schema({
     code: {type: String, index: true},
     name: String,
     data: [{
-        cur: Number,
+        price: Number,
         percent: Number,
         share: Number,
         date: Date,

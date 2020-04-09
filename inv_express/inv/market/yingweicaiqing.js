@@ -35,6 +35,15 @@ class YingweicaiqingStock extends AbstractStock {
         });
         this.array = array;
     }
+
+    parseStock(body) {
+        const cheerio = require('cheerio');
+        const $ = cheerio.load(body);
+        let children = $("div[class='top bold inlineblock']").children();
+        this.price = this.convert($(children[0]).text());
+        this.change = parseFloat($(children[1]).text());
+        this.percent = this.parsePercentDivisor100($(children[3]).text());
+    }
 }
 
 var http = require('../utils/http');
@@ -91,10 +100,21 @@ class yingweicaiqing {
         return stock;
     }
 
+    async getStock(code) {
+        var that = this;
+        var url = "https://cn.investing.com/indices/%s";
+        var option = that.getOption();
+        option.url = util.format(url, code);
+        var body = await http.get(option.url, option);
+        var stock = new YingweicaiqingStock(code);
+        stock.parseStock(body);
+        return stock;
+    }
+
 }
 
 // (async () => {
-//     await new yingweicaiqing().getETF("source-us-consumer-discretnry");
+//     await new yingweicaiqing().getStock("india-50-futures");
 // })();
 
 module.exports = yingweicaiqing;

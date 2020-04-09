@@ -11,6 +11,7 @@ router.get('/:path', function (req, res, next) {
                 let result = await Excel.requestResult(path, req.query.debug);
                 res.render('excel', {title: req.params.path, result: result});
             })().catch(function (e) {
+                console.error(e);
                 res.status(500).render('500', {error: e});
             });
         } else {

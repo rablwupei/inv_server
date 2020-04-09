@@ -4,7 +4,7 @@ var sprintf = require("sprintf-js").sprintf;
 
 class Result {
     compare(index, unit, stock) {
-        var offset = (stock.cur / unit.price1 - 1);
+        var offset = (stock.price / unit.price1 - 1);
         var offsetStr = "";
         var tips = "";
         if (unit.price1 > 0) {
