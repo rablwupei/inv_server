@@ -10,7 +10,8 @@ class DBUnit {
     parse(table) {
         this.code = table[0];
         this.name = table[1];
-        this.time = table[2];
+        this.type = table[2];
+        this.time = table[3];
     }
 
     startTimer() {
@@ -27,7 +28,7 @@ class DBUnit {
         await this.parser.request();
         this.stock = this.parser.getDBObject();
         if (this.stock) {
-            await Stocks.saveOne(this.code, this.name, this.stock);
+            await Stocks.saveOne(this.code, this.name, this.type, this.stock);
         }
     }
 }
@@ -48,14 +49,17 @@ class DBExcel extends Excel {
             if (this.skipRow(i)) {
                 continue;
             }
-            let code = excelData[i][0];
-            let name = excelData[i][1];
-            let time = excelData[i][2];
-            let src = excelData[i][3];
+            let line = excelData[i];
+            let code = line[0];
+            let name = line[1];
+            let type = line[2];
+            let time = line[3];
+            let src  = line[4];
             let defTimer = this.defTimers[code];
             if (defTimer) {
                 defTimer.code = code;
                 defTimer.name = name;
+                defTimer.type = type;
                 defTimer.time = time;
                 continue;
             }
@@ -70,7 +74,7 @@ class DBExcel extends Excel {
                             parser.addRegularResult(match);
                             let dbUnit = new DBUnit();
                             dbUnit.parser = parser;
-                            dbUnit.parse(excelData[i]);
+                            dbUnit.parse(line);
                             this.dbUnits.push(dbUnit);
                             process = true;
                             break;
@@ -88,7 +92,11 @@ class DBExcel extends Excel {
         for (let key in this.defTimers) {
             let defTimer = this.defTimers[key];
             let CronJob = require('cron').CronJob;
-            new CronJob(defTimer.time, defTimer.callback).start();
+            new CronJob(defTimer.time, function () {
+                if (defTimer.callback) {
+                    defTimer.callback(defTimer);
+                }
+            }).start();
             console.log("[timer] def: " + JSON.stringify(defTimer));
         }
     }

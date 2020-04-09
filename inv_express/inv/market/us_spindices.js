@@ -30,12 +30,28 @@ class us_spindices {
     }
 
     async get(code) {
-        var that = this;
-        var url = "https://us.spindices.com/indices/equity/%s";
-        var option = that.getOption();
+        let that = this;
+        let url = "https://us.spindices.com/indices/equity/%s";
+        let option = that.getOption();
         option.url = util.format(url, code);
-        var body = await http.get(option.url, option);
-        var stock = new Us_spindicesStock(code);
+        option.timeout = 20 * 1000;
+        let body = null;
+        let count = 5;
+        let error = null;
+        for (let i = 0; i < count; i++) {
+            try {
+                body = await http.get(option.url, option);
+                error = null;
+                break;
+            } catch (e) {
+                console.log(`http error and restart. url = ${option.url}`);
+                error = e;
+            }
+        }
+        if (error) {
+            throw error;
+        }
+        let stock = new Us_spindicesStock(code);
         stock.parse(body);
         return stock;
     }

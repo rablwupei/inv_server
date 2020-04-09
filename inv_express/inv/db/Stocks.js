@@ -2,20 +2,21 @@ let moment = require("moment");
 
 let mongoose = require('mongoose');
 let stocksSchema = mongoose.Schema({
-    code: {type: String, index: true},
-    name: String,
+    code: {type: String, index: true}, //代码
+    name: String, //名称
+    type: String, //类型
     data: [{
         price: Number, //价格
         percent: Number, //涨跌幅
         change: Number, //价格变化
         share: Number, //份额
-        date: Date,
+        date: Date, //时间
     }],
 });
 
 let Stocks = mongoose.model('Stocks', stocksSchema, 'Stocks');
 
-Stocks.saveOne = function(code, name, stock) {
+Stocks.saveOne = function(code, name, type, stock) {
     return new Promise(function (resolve, reject) {
         Stocks.findOne({code: code}, function (err, value) {
             if (err) {
@@ -25,11 +26,11 @@ Stocks.saveOne = function(code, name, stock) {
             if (!value) {
                 value = new Stocks();
                 value.code = code;
-                value.name = name;
                 value.data = [];
-            } else {
-                value.name = name;
             }
+            value.name = name;
+            value.type = type;
+
             stock.date = new Date();
             if (value.data.length > 0 && moment(stock.date).isSame(moment(value.data[0].date), 'day') ) {
                 value.data[0] = stock;

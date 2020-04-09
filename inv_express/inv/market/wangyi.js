@@ -1,11 +1,7 @@
 var AbstractStock = require('./AbstractStock');
 var util = require("util");
 var moment = require("moment");
-
-String.prototype.replaceAll = function (FindText, RepText) {
-    regExp = new RegExp(FindText, "g");
-    return this.replace(regExp, RepText);
-};
+require('../utils/prototype_extends');
 
 class WangyiStock extends AbstractStock {
     constructor(code) {

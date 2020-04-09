@@ -1,10 +1,6 @@
 let AbstractStock = require('./AbstractStock');
 let util = require('util');
-
-String.prototype.replaceAll = function (FindText, RepText) {
-    regExp = new RegExp(FindText, "g");
-    return this.replace(regExp, RepText);
-};
+require('../utils/prototype_extends');
 
 class HsiindexStock extends AbstractStock {
     constructor(code) {

@@ -37,13 +37,13 @@ shenjifeneExcel.get = async function() {
     return map;
 };
 
-shenjifeneExcel.startTimer = function() {
+shenjifeneExcel.startTimer = function(unit) {
     (async ()=> {
         let map = await shenjifeneExcel.get();
         for (let key in map) {
             let stock = map[key];
             if (stock.type == "LOF") {
-                require('../db/Stocks').saveOne(stock.code, stock.name, stock).catch(function (e) {
+                require('../db/Stocks').saveOne(stock.code, stock.name, unit.type, stock).catch(function (e) {
                     let json = JSON.stringify(stock);
                     console.error(`stock save error. stock: ${json}, error: ${e}`);
                 });
