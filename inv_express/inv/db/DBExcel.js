@@ -39,6 +39,7 @@ class DBExcel extends Excel {
         super(path, debug);
         this.defTimers = {};
         this.defTimers["#001"] = { callback: require('../market/shenjifeneExcel').startTimer };
+        this.defTimers["#002"] = { callback: require('../market/shangjifene').startTimer };
     }
 
     parse() {

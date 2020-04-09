@@ -4,14 +4,8 @@
     <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inv/db/DBExcel.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/db/DBExcel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/db/Stocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/db/Stocks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/ft.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/ft.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/hsiindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/hsiindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/shenjifeneExcel.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/shenjifeneExcel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/us_spindices.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/us_spindices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/wangyi.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/wangyi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/timer/timer.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/timer/timer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/utils/prototype_extends.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/utils/prototype_extends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inv/market/shangjifene.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/shangjifene.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inv/market/shenjifene.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +68,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Node.js.bin\www">
-    <configuration name="hsiindex.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/hsiindex.js" working-dir="$PROJECT_DIR$/inv/market">
+    <configuration name="shangjifene.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/shangjifene.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
     <configuration name="shenjifeneExcel.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/shenjifeneExcel.js" working-dir="$PROJECT_DIR$/inv/market">
@@ -92,18 +86,18 @@
     <list>
       <item itemvalue="Node.js.bin\www" />
       <item itemvalue="Node.js.yingweicaiqing.js" />
-      <item itemvalue="Node.js.hsiindex.js" />
       <item itemvalue="Node.js.shenjifeneExcel.js" />
       <item itemvalue="Node.js.us_spindices.js" />
       <item itemvalue="Node.js.yahoo.js" />
+      <item itemvalue="Node.js.shangjifene.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.shangjifene.js" />
         <item itemvalue="Node.js.yahoo.js" />
         <item itemvalue="Node.js.us_spindices.js" />
         <item itemvalue="Node.js.yingweicaiqing.js" />
         <item itemvalue="Node.js.shenjifeneExcel.js" />
-        <item itemvalue="Node.js.hsiindex.js" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +166,8 @@
       <workItem from="1586420454035" duration="1383000" />
       <workItem from="1586424003538" duration="727000" />
       <workItem from="1586425797447" duration="74000" />
-      <workItem from="1586433208280" duration="4793000" />
+      <workItem from="1586433208280" duration="5144000" />
+      <workItem from="1586438729152" duration="1875000" />
     </task>
     <task id="LOCAL-00001" summary="refactor">
       <created>1582612979848</created>
@@ -454,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586413313715</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="add yahoo">
+      <created>1586438030259</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1586438030259</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +542,8 @@
     <MESSAGE value="shenjifene db" />
     <MESSAGE value="yinwei indices" />
     <MESSAGE value="add timer" />
-    <option name="LAST_COMMIT_MESSAGE" value="add timer" />
+    <MESSAGE value="add yahoo" />
+    <option name="LAST_COMMIT_MESSAGE" value="add yahoo" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1133" y="234" key="#Inspections" timestamp="1586236212640">
@@ -569,10 +572,10 @@
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="421" y="122" key="#xdebugger.evaluate/36.23.1244.777@36.23.1244.777" timestamp="1586101537054" />
-    <state x="719" y="0" width="831" height="777" key="CommitChangelistDialog2" timestamp="1586413312817">
+    <state x="719" y="0" width="831" height="777" key="CommitChangelistDialog2" timestamp="1586438028577">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state x="719" y="0" width="1231" height="1000" key="CommitChangelistDialog2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586413312817" />
+    <state x="719" y="0" width="1231" height="1000" key="CommitChangelistDialog2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586438028577" />
     <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1586186652232" />
     <state width="1004" height="648" key="DebuggerActiveHint" timestamp="1586237676806">
       <screen x="63" y="0" width="2497" height="1080" />
@@ -591,25 +594,25 @@
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
     <state x="1012" y="360" key="FileChooserDialogImpl/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586268713437" />
-    <state width="1718" height="244" key="GridCell.Tab.0.bottom" timestamp="1586438004162">
+    <state width="1718" height="244" key="GridCell.Tab.0.bottom" timestamp="1586440622412">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state width="1718" height="244" key="GridCell.Tab.0.bottom/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586438004162" />
+    <state width="1718" height="244" key="GridCell.Tab.0.bottom/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586440622412" />
     <state width="1203" height="285" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1586189037853" />
-    <state width="1718" height="244" key="GridCell.Tab.0.center" timestamp="1586438004162">
+    <state width="1718" height="244" key="GridCell.Tab.0.center" timestamp="1586440622412">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state width="1718" height="244" key="GridCell.Tab.0.center/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586438004162" />
+    <state width="1718" height="244" key="GridCell.Tab.0.center/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586440622412" />
     <state width="1203" height="285" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1586189037853" />
-    <state width="1718" height="244" key="GridCell.Tab.0.left" timestamp="1586438004162">
+    <state width="1718" height="244" key="GridCell.Tab.0.left" timestamp="1586440622412">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state width="1718" height="244" key="GridCell.Tab.0.left/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586438004162" />
+    <state width="1718" height="244" key="GridCell.Tab.0.left/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586440622412" />
     <state width="1203" height="285" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1586189037852" />
-    <state width="1718" height="244" key="GridCell.Tab.0.right" timestamp="1586438004162">
+    <state width="1718" height="244" key="GridCell.Tab.0.right" timestamp="1586440622412">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state width="1718" height="244" key="GridCell.Tab.0.right/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586438004162" />
+    <state width="1718" height="244" key="GridCell.Tab.0.right/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586440622412" />
     <state width="1203" height="285" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1586189037853" />
     <state width="1611" height="302" key="GridCell.Tab.1.bottom" timestamp="1586269510470">
       <screen x="63" y="0" width="2497" height="1080" />
@@ -685,10 +688,10 @@
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
     <state x="460" y="210" width="1449" height="735" key="VCS.FileHistoryDialog/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585751472482" />
-    <state x="714" y="309" key="Vcs.Push.Dialog.v2" timestamp="1586413323310">
+    <state x="714" y="309" key="Vcs.Push.Dialog.v2" timestamp="1586438037590">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state x="714" y="309" key="Vcs.Push.Dialog.v2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586413323310" />
+    <state x="714" y="309" key="Vcs.Push.Dialog.v2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586438037590" />
     <state x="360" y="245" key="Vcs.Push.Dialog.v2/36.23.1244.777@36.23.1244.777" timestamp="1586186659806" />
     <state x="901" y="229" width="1449" height="735" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582606464190">
       <screen x="63" y="0" width="2497" height="1080" />
@@ -707,10 +710,10 @@
       <screen x="2623" y="0" width="1857" height="1080" />
     </state>
     <state x="2752" y="76" width="1225" height="642" key="dock-window-1/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1585274057277" />
-    <state x="891" y="305" width="647" height="534" key="find.popup" timestamp="1586434718257">
+    <state x="891" y="305" width="647" height="534" key="find.popup" timestamp="1586438990899">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state x="891" y="305" width="647" height="534" key="find.popup/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586434718257" />
+    <state x="891" y="305" width="647" height="534" key="find.popup/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586438990899" />
     <state x="449" y="242" width="667" height="486" key="find.popup/36.23.1244.777@36.23.1244.777" timestamp="1586180770481" />
     <state x="355" y="210" key="git4idea.merge.GitPullDialog" timestamp="1585456001803">
       <screen x="36" y="23" width="1244" height="777" />
