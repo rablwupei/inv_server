@@ -4,7 +4,8 @@ db.connect = function() {
     const info = require('../../src/mongo');
     const mongoose = require('mongoose');
     mongoose.Promise = Promise;
-    mongoose.connect(`mongodb://${info.host}:${info.port}/${info.db}`, {
+    let url = `mongodb://${info.host}:${info.port}/${info.db}`;
+    mongoose.connect(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -14,7 +15,7 @@ db.connect = function() {
     });
     mongoose.connection.on('error', console.error.bind(console, '[mongo] connect error: '));
     mongoose.connection.once('open', function() {
-        console.log("[mongo] connect success");
+        console.log(`[mongo] connect success. host: ${url}`);
         require('./DBExcel').exec();
     });
 };

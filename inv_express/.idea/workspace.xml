@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/db/DBExcel.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/db/DBExcel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/db/Stocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/db/Stocks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inv/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/db/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/AbstractStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/AbstractStock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/market/yingweicaiqing.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/yingweicaiqing.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +158,7 @@
       <workItem from="1586353032156" duration="59000" />
       <workItem from="1586406450149" duration="112000" />
       <workItem from="1586406699322" duration="158000" />
-      <workItem from="1586406868148" duration="6170000" />
+      <workItem from="1586406868148" duration="6435000" />
     </task>
     <task id="LOCAL-00001" summary="refactor">
       <created>1582612979848</created>
@@ -431,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586409610506</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="add timer">
+      <created>1586413301019</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1586413301019</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +499,6 @@
     <MESSAGE value="refactor css" />
     <MESSAGE value="add waterfall" />
     <MESSAGE value="js refactor" />
-    <MESSAGE value="add timer" />
     <MESSAGE value="xueqiukxian" />
     <MESSAGE value="shenjifene" />
     <MESSAGE value="add cheerio" />
@@ -517,7 +518,8 @@
     <MESSAGE value="shenjifeneExcel" />
     <MESSAGE value="shenjifene db" />
     <MESSAGE value="yinwei indices" />
-    <option name="LAST_COMMIT_MESSAGE" value="yinwei indices" />
+    <MESSAGE value="add timer" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1133" y="234" key="#Inspections" timestamp="1586236212640">
@@ -546,10 +548,10 @@
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="421" y="122" key="#xdebugger.evaluate/36.23.1244.777@36.23.1244.777" timestamp="1586101537054" />
-    <state x="719" y="0" width="831" height="777" key="CommitChangelistDialog2" timestamp="1586409608704">
+    <state x="719" y="0" width="831" height="777" key="CommitChangelistDialog2" timestamp="1586413299411">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
-    <state x="719" y="0" width="1231" height="1000" key="CommitChangelistDialog2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586409608704" />
+    <state x="719" y="0" width="1231" height="1000" key="CommitChangelistDialog2/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586413299411" />
     <state x="363" y="23" width="831" height="777" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1586186652232" />
     <state width="1004" height="648" key="DebuggerActiveHint" timestamp="1586237676806">
       <screen x="63" y="0" width="2497" height="1080" />
