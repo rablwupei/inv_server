@@ -4,6 +4,7 @@
 
 var util = require('util');
 var sprintf = require("sprintf-js").sprintf;
+require('../utils/prototype_extends');
 
 class AbstractStock {
     constructor(code) {

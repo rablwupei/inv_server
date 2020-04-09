@@ -14,6 +14,7 @@ class DBUnit {
     }
 
     startTimer() {
+        console.log("[timer] default: " + JSON.stringify(this));
         let CronJob = require('cron').CronJob;
         new CronJob(this.time, () => {
             this.startRequestAndSave().catch(function(error) {
@@ -25,7 +26,9 @@ class DBUnit {
     async startRequestAndSave() {
         await this.parser.request();
         this.stock = this.parser.getDBObject();
-        await Stocks.saveOne(this.code, this.name, this.stock);
+        if (this.stock) {
+            await Stocks.saveOne(this.code, this.name, this.stock);
+        }
     }
 }
 
@@ -86,7 +89,7 @@ class DBExcel extends Excel {
             let defTimer = this.defTimers[key];
             let CronJob = require('cron').CronJob;
             new CronJob(defTimer.time, defTimer.callback).start();
-            console.log("defTimer: " + JSON.stringify(defTimer));
+            console.log("[timer] def: " + JSON.stringify(defTimer));
         }
     }
 

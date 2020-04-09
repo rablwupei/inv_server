@@ -5,9 +5,10 @@ let stocksSchema = mongoose.Schema({
     code: {type: String, index: true},
     name: String,
     data: [{
-        price: Number,
-        percent: Number,
-        share: Number,
+        price: Number, //价格
+        percent: Number, //涨跌幅
+        change: Number, //价格变化
+        share: Number, //份额
         date: Date,
     }],
 });
@@ -43,6 +44,7 @@ Stocks.saveOne = function(code, name, stock) {
                     reject(err);
                     return;
                 }
+                console.log("[mongo] save: " + JSON.stringify(value));
                 resolve();
             });
         })
