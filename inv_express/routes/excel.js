@@ -9,7 +9,7 @@ router.get('/*', function (req, res, next) {
     fs.stat(path, function (err, stat) {
         (async () => {
             let files = await Excel.list();
-            if (!err) {
+            if (!err && stat.isFile()) {
                 let result = await Excel.requestResult(path, req.query.debug);
                 res.render('excel', {title: fileName, result: result, files: files});
             } else {
