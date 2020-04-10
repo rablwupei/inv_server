@@ -8,8 +8,7 @@ var timer = {};
 // Day of Week: 0-6 (Sun-Sat)
 
 timer.start = function () {
-    var CronJob = require('cron').CronJob;
-    new CronJob('0,30 14 * * 1-5', async() => {
+    require('../utils/cron').startInTrade('0,30 14 * * 1-5', async() => {
         var http = require("../utils/http");
         var body = await http.get("https://xueqiu.com/S/SZ161716");
         body = body.match(/溢价率：&lt;span&gt;(-?\d+\.\d+)%/);
@@ -22,7 +21,7 @@ timer.start = function () {
                 touser : "@all",
             })
         }
-    }).start();
+    });
 };
 
 module.exports = timer;

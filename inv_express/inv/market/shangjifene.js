@@ -83,16 +83,14 @@ class Shangjifene {
         return ShangjifeneStock.parseAll(body);
     }
 
-    static startTimer(unit) {
-        (async ()=> {
-            let array = await new Shangjifene().getAll();
-            for (let stock of array) {
-                require('../db/Stocks').saveOne(stock.code, stock.name, unit.type, stock.data).catch(function (e) {
-                    let json = JSON.stringify(stock);
-                    console.error(`stock save error. stock: ${json}, error: ${e}`);
-                });
-            }
-        })();
+    static async startTimer(unit) {
+        let array = await new Shangjifene().getAll();
+        for (let stock of array) {
+            require('../db/Stocks').saveOne(stock.code, stock.name, unit.type, stock.data).catch(function (e) {
+                let json = JSON.stringify(stock);
+                console.error(`stock save error. stock: ${json}, error: ${e}`);
+            });
+        }
     }
 
 }
