@@ -2,24 +2,44 @@ extends layout
 
 block content
   div(class="grid")
+    if result != null
+      div(class="grid-item")
+        table(id="table1" class="widget-zebra tablesorter-blue")
+          thead
+            tr
+              each val in result.list[0]
+                th=val
+          tbody
+            -for(var i = 1; i < result.list.length; i++) {
+              tr
+                -for(var j = 0; j < result.list[i].length; j++) {
+                  td=result.list[i][j]
+                -}
+            -}
+        script.
+          $(function () {
+            $("#table1").tablesorter();
+          });
     div(class="grid-item")
-      table(id="table1" class="widget-zebra tablesorter-blue")
+      table(id="table2" class="widget-zebra tablesorter-blue")
         thead
           tr
-            each val in result.list[0]
+            each val in files[0]
               th=val
         tbody
-          -for(var i = 1; i < result.list.length; i++) {
+          -for (var i = 1; i < files.length; i++) {
             tr
-              -for(var j = 0; j < result.list[i].length; j++) {
-                td=result.list[i][j]
-              -}
+              td=files[i][0]
+              td
+                a(href=files[i][1].href) #{files[i][1].text}
+              td=files[i][2]
           -}
       script.
         $(function () {
-          $("#table1").tablesorter();
+          $("#table2").tablesorter();
         });
-  pre=result.debug
+  if result != null
+    pre=result.debug
   script.
     $(document).ready(function () {
       $('.grid').masonry({

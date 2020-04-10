@@ -207,6 +207,52 @@ Excel.requestResult = async function(path, debug) {
     return excel.fill();
 };
 
+
+const { resolve } = require('path');
+const { readdir } = require('fs').promises;
+async function* getFiles(dir) {
+    const dirents = await readdir(dir, { withFileTypes: true });
+    for (const dirent of dirents) {
+        const res = resolve(dir, dirent.name);
+        if (dirent.isDirectory()) {
+            yield* getFiles(res);
+        } else {
+            yield res;
+        }
+    }
+}
+
+Excel.list = function() {
+    return new Promise(function (resolve, reject) {
+        const glob = require('glob');
+        const path = require("path");
+        const fs = require('fs');
+        const moment = require('moment');
+        let dirBase = __dirname + '/../../src/excel';
+        let urlBase = "/excel/";
+        glob(dirBase + '/**/*.xlsx', {}, (err, files) => {
+            if (!err) {
+                let table = [];
+                table.push(["序号", "文件", "修改时间"]);
+                for (let i = 0; i < files.length; i++) {
+                    let file = files[i];
+                    let line = [];
+                    table.push(line);
+                    line.push(i + 1);
+                    line.push({
+                        href: urlBase + path.relative(dirBase, file),
+                        text: path.relative(dirBase, file),
+                    });
+                    line.push(moment(fs.statSync(file).mtime).format('YYYY-MM-DD'));
+                }
+                resolve(table);
+            } else {
+                reject(err);
+            }
+        })
+    });
+};
+
 // require('co')(function*() {
 //     let results = yield Excel.requestResult(__dirname + "/../../src/excel/yuanyou.xlsx");
 //     console.log(results)
