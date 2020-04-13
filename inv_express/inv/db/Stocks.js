@@ -37,7 +37,7 @@ Stocks.saveOne = function(code, name, type, stock) {
             } else {
                 value.data.insert(0, stock);
             }
-            while (value.data.length > 5) {
+            while (value.data.length > 10) {
                 value.data.pop();
             }
             value.save(function (err) {

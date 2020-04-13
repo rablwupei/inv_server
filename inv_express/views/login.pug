@@ -1,0 +1,28 @@
+extends layout
+
+block head
+  link(rel='stylesheet', href='/stylesheets/login.css')
+
+block content
+  div.wrapper
+    div.container
+      h1 Welcome
+      form(class='form', method='POST', action='/login')
+        if error
+          div.msg-wrap
+            div.msg-error
+              span.glyphicon=error
+        input(class='text', type='text', name='username', placeholder='Username', autofocus='true')
+        input(class='text', type='password', name='password', placeholder='Password')
+        button(type='submit') Login
+    ul.bg-bubbles
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
