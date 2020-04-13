@@ -30,7 +30,8 @@ var flash = require('connect-flash');
 app.use(require('express-session')({
     secret: require('./src/user').secret,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }
 }));
 app.use(passport.initialize());
 app.use(flash());
