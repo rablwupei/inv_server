@@ -13,7 +13,7 @@ router.get('/*', function (req, res, next) {
                 let result = await Excel.requestResult(path, req.query.debug);
                 res.render('excel', {title: fileName, result: result, files: files});
             } else {
-                res.render('excel', {title: fileName, result: null, files: files});
+                res.render('excel', {title: "list", result: null, files: files});
             }
         })().catch(function (e) {
             console.error(e);
