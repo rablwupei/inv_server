@@ -1,16 +1,26 @@
 let DataSourceParser = require("../DataSourceParser");
 
 class DataSourceParserYingweicaiqing extends DataSourceParser {
+    constructor() {
+        super();
+        this._urls = [];
+    }
+
     get key() {
         return "英为财情";
     }
 
     get regular() {
-        return /英为财情\[(.*?)\]\[(.*?)\]\[(.*?)\]/g;
+        return /英为财情\[(.*?)\]\[(.*?)\]\[(.*?)\]\[(.*?)\]/g;
     }
 
     replaceStr(str) {
-        return str.replace(this.regular, 'values["英为财情"]["$1"]["$2"]["$3"]')
+        return str.replace(this.regular, 'values["英为财情"]["$1"]["$2"]["$3"]["$4"]')
+    }
+
+    addRegularResult(res) {
+        this._ids.add(res[2]);
+        this._urls.push(res[1]);
     }
 
     async request() {
@@ -23,11 +33,8 @@ class DataSourceParserYingweicaiqing extends DataSourceParser {
         var ids = Array.from(this._ids);
         for (let i = 0; i < ids.length; i++) {
             var code = ids[i];
-            requests.push(market.get(code));
+            requests.push(market.getAny(this._urls[i], code));
         }
-        // for(var request of requests) {
-        //     this._stocks.push(await request);
-        // }
         this._stocks = await Promise.all(requests);
     }
 
@@ -35,11 +42,12 @@ class DataSourceParserYingweicaiqing extends DataSourceParser {
         if (this._ids.size === 0) {
             return;
         }
-        var value = {};
+        var value = values[this.key] || {};
         values[this.key] = value;
         for (let i = 0; i < this._stocks.length; i++) {
             var stock = this._stocks[i];
-            value["" + stock.code] = stock.array;
+            value[this._urls[i]] = value[this._urls[i]] || {};
+            value[this._urls[i]]["" + stock.code] = stock.array;
         }
     }
 }
