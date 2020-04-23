@@ -57,7 +57,7 @@ passport.deserializeUser(function(user, done) {
 app.use('/login', require('./routes/login'));
 
 app.use((req, res, next) => {
-    if (process.env.NODE_ENV === 'production' || req.isAuthenticated()) {
+    if (process.env.NODE_ENV !== 'production' || req.isAuthenticated()) {
         return next()
     }
     req.session.returnTo = req.originalUrl;
