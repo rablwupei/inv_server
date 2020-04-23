@@ -27,11 +27,18 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-app.use(require('express-session')({
+const session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var db = require("./inv/db/db").connect();
+app.use(session({
     secret: require('./src/user').secret,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
+    store: new MongoStore({
+        mongooseConnection: db.connection,
+        ttl: 7 * 24 * 60 * 60
+    })
 }));
 app.use(passport.initialize());
 app.use(flash());
@@ -57,7 +64,7 @@ passport.deserializeUser(function(user, done) {
 app.use('/login', require('./routes/login'));
 
 app.use((req, res, next) => {
-    if (process.env.NODE_ENV !== 'production' || req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         return next()
     }
     req.session.returnTo = req.originalUrl;
@@ -86,7 +93,6 @@ app.use(function (err, req, res, next) {
 
 app.start = function () {
     require("./inv/timer/timer").start();
-    require("./inv/db/db").connect();
 };
 
 module.exports = app;
