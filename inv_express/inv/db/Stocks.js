@@ -45,7 +45,7 @@ Stocks.saveOne = function(code, name, type, stock) {
                     reject(err);
                     return;
                 }
-                console.log("[mongo] save: " + JSON.stringify(value));
+                // console.log("[mongo] save: " + JSON.stringify(value));
                 resolve();
             });
         })

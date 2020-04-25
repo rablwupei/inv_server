@@ -38,7 +38,6 @@ m.url = "http://www.csindex.com.cn/zh-CN/indices/index-detail/%s";
 m.get = async function(code) {
     var url = util.format(m.url, code);
     var referer = url;
-    console.log(url)
     var body = await http.get(url, {headers: {'Referer': referer} });
     var stock = new ZhongzhengzhishuStock(code);
     stock.parse(body);

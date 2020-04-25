@@ -47,6 +47,25 @@ http.get = function (url, option = {}, customRequest) {
     });
 };
 
+http.getRetry = async function (url, option = {}, count = 5, customRequest) {
+    let body = null;
+    let error = null;
+    for (let i = 0; i < count; i++) {
+        try {
+            body = await http.get(url, option, customRequest);
+            error = null;
+            break;
+        } catch (e) {
+            console.log(`http error and restart. url = ${option.url}`);
+            error = e;
+        }
+    }
+    if (error) {
+        throw error;
+    }
+    return body;
+};
+
 http.post = function (url, post, option = {}) {
     option.body = post;
     option.method = 'POST';

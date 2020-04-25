@@ -15,8 +15,18 @@ class AbstractStock {
         // this.percent = 0;
     }
 
+    parseFloat(value) {
+        value = (value + '').trim().replaceAll(",", "");
+        var num = parseFloat(value);
+        if (!isNaN(num)) {
+            return num
+        }
+        return value
+    }
+
     parsePercentDivisor100(value) {
         let newvalue = value + '';
+        newvalue = newvalue.trim();
         newvalue = newvalue.replaceAll(",", "");
         newvalue = newvalue.replaceAll("%", "");
         newvalue = parseFloat(newvalue);

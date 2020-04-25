@@ -18,6 +18,7 @@ db.connect = function() {
         console.log(`[mongo] connect success. host: ${url}`);
         require('./DBExcel').exec();
     });
+    return mongoose;
 };
 
 module.exports = db;
