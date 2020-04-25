@@ -15,12 +15,12 @@ block content
           thead
             tr
               each val in result.list[0]
-                th=val
+                th=val.text
           tbody
             -for(var i = 1; i < result.list.length; i++) {
               tr
                 -for(var j = 0; j < result.list[i].length; j++) {
-                  td=result.list[i][j]
+                  td(class=result.list[i][j].class)=result.list[i][j].text
                 -}
             -}
         script.

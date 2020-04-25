@@ -3,26 +3,45 @@ var sina = require('../market/sina');
 var sprintf = require("sprintf-js").sprintf;
 
 class Result {
+    getColor(percent) {
+        if (percent > 0) {
+            return "red"
+        } else if (percent < 0) {
+            return "green"
+        }
+        return null;
+    }
+
     compare(index, unit, stock) {
         var offset = (stock.price / unit.price1 - 1);
         var offsetStr = "";
         var tips = "";
-        if (unit.price1 > 0) {
-            offsetStr = sprintf("%.2f%%", offset * 100);
-        }
+        var tipsClass = null;
         if (unit.tips) {
             tips = unit.tips
         }
+        if (unit.price1 > 0) {
+            //20% -10% 20%/3
+            //20% -30% 20%/1
+            if (unit.cangwei) {
+                if (offset < 0) {
+                    tips = sprintf("%.2f%%", -offset / 0.3 * unit.cangwei * 100);
+                } else {
+                    tips = "0%"
+                }
+            }
+            offsetStr = sprintf("%.2f%%", offset * 100);
+        }
         this.number = offset;
         this.output = [
-            index + 1,
-            unit.codeStr,
-            unit.name,
-            stock.curStr,
-            stock.percentStr,
-            unit.price1,
-            offsetStr,
-            tips,
+            {text:index + 1, class:"center"},
+            {text:unit.codeStr, class:"center"},
+            {text:unit.name, class:"center"},
+            {text:stock.curStr},
+            {text:stock.percentStr, class:this.getColor(stock.percent)},
+            {text:unit.price1},
+            {text:offsetStr},
+            {text:tips, class:tipsClass},
         ]
     }
 

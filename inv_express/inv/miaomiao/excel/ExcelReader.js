@@ -65,7 +65,8 @@ class ExcelReader {
                 if (excelUnit.code && !isNaN(excelUnit.price1)) {
                     if (/^[0-9]+/.test(excelUnit.code)) {
                         if (unit[5]) {
-                            excelUnit.tips = sprintf("%.2f%%", parseFloat(unit[5]) * 100);
+                            excelUnit.cangwei = parseFloat(unit[5]);
+                            excelUnit.tips = sprintf("%.2f%%", excelUnit.cangwei * 100);
                             excelUnit.codeStr = sprintf("%06s", excelUnit.code);
                             if (excelUnit.codeStr.startsWith("6")) {
                                 excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;

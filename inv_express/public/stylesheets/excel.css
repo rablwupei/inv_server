@@ -3,6 +3,26 @@ body {
   font-size: small;
 }
 
+th {
+  text-align: center;
+}
+
+td {
+  text-align: right;
+}
+
+td.center {
+  text-align: center;
+}
+
+td.red {
+  color: #d20!important;
+}
+
+td.green {
+  color: #093!important;
+}
+
 /* TABLE BACKGROUND color (match the original theme) */
 table.hover-highlight td:before,
 table.focus-highlight td:before {

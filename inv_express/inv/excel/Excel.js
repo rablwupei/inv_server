@@ -41,6 +41,9 @@ class Excel {
     parseHeader() {
         this._headerType = [];
         this._headerHide = [];
+        this._headerColor = [];
+        this._sortSmall = null;
+        this._sortBig = null;
         let row = this._excelData[1];
         for (let j = 0; j < row.length; j++) {
             this._headerType[j] = type_pre;
@@ -54,6 +57,16 @@ class Excel {
             this._headerHide[j] = false;
             if (values.includes("hide")) {
                 this._headerHide[j] = true;
+            }
+            this._headerColor[j] = false;
+            if (values.includes("color")) {
+                this._headerColor[j] = true;
+            }
+            if (values.includes("sortsmall")) {
+                this._sortSmall = j;
+            }
+            if (values.includes("sortbig")) {
+                this._sortBig = j;
             }
         }
     }
@@ -70,11 +83,25 @@ class Excel {
         return this._headerType[j] === type_string;
     }
 
+    getColor(percent) {
+        if (percent > 0) {
+            return "red"
+        } else if (percent < 0) {
+            return "green"
+        }
+        return null;
+    }
+
     convertString(i, j, value) {
+        let cls = null;
         let type = this._headerType[j];
+        let num;
         if (type === type_float || type === type_percent || type === type_int) {
-            let num = parseFloat(value);
+            num = parseFloat(value);
             if (num === 0 || num) {
+                if (this._headerColor[j]) {
+                    cls = this.getColor(num);
+                }
                 if (type === type_int) {
                     value = Math.round(value) + "";
                 } else if (type === type_percent) {
@@ -84,7 +111,10 @@ class Excel {
                 }
             }
         }
-        return value + "";
+        if (i > 0 && j <= 1) {
+            cls = "center";
+        }
+        return {text: value + "", num: num, class: cls};
     }
 
     parse() {
@@ -136,6 +166,14 @@ class Excel {
         return str;
     }
 
+    partialSort(arr, start, end, func) {
+        var preSorted = arr.slice(0, start), postSorted = arr.slice(end);
+        var sorted = arr.slice(start, end).sort(func);
+        arr.length = 0;
+        arr.push.apply(arr, preSorted.concat(sorted).concat(postSorted));
+        return arr;
+    }
+
     fill() {
         let values = {};
         for (var k = 0; k < this._parsers.length; k++) {
@@ -177,6 +215,20 @@ class Excel {
             if (this._debug) {
                 debug.push("")
             }
+        }
+        let that = this;
+        if (this._sortSmall) {
+            this.partialSort(data, 2, data.length, function (a, b) {
+                a = parseFloat(a[that._sortSmall]) || 0;
+                b = parseFloat(b[that._sortSmall]) || 0;
+                return a - b;
+            });
+        } else if (this._sortBig) {
+            this.partialSort(data, 2, data.length, function (a, b) {
+                a = parseFloat(a[that._sortBig]) || 0;
+                b = parseFloat(b[that._sortBig]) || 0;
+                return b - a;
+            });
         }
         var output = { list : [], debug : debug.join('\n') };
         for (let i = 0; i < data.length; i++) {

@@ -22,7 +22,7 @@ block content
           each vals in result.outputs
             tr
               each val in vals
-                td=val
+                td(class=val.class)=val.text
       script.
         $(function () {
           $("##{talbeId}").tablesorter();
