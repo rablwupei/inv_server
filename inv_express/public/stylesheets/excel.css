@@ -23,6 +23,10 @@ td.green {
   color: #093!important;
 }
 
+td.gray {
+  color: #909499!important;
+}
+
 /* TABLE BACKGROUND color (match the original theme) */
 table.hover-highlight td:before,
 table.focus-highlight td:before {

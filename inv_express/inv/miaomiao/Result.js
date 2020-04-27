@@ -17,24 +17,28 @@ class Result {
         var offsetStr = "";
         var tips = "";
         var tipsClass = null;
+        var tips2 = "";
         if (unit.tips) {
             tips = unit.tips
         }
         if (unit.price1 > 0) {
-            //20% -10% 20%/3
-            //20% -30% 20%/1
+            //0.0 0.2  10% 3.3%
+            //0.1 0.2  10% 6.6%
+            //0.2 0.2  10% 10%
             if (unit.cangwei) {
                 if (offset < 0) {
-                    tips = sprintf("%.2f%%", -offset / 0.3 * unit.cangwei * 100);
+                    var percent = ((-offset + 0.1) / 0.3) * unit.cangwei;
+                    tips = sprintf("%.2f%%", percent * 100);
+                    tips2 = sprintf("%.2f", percent * 50);
                 } else {
-                    tips = "0%"
+                    tips = sprintf("%.2f%%", unit.cangwei * 100);
+                    tipsClass = "gray";
                 }
             }
             offsetStr = sprintf("%.2f%%", offset * 100);
         }
         this.number = offset;
         this.output = [
-            {text:index + 1, class:"center"},
             {text:unit.codeStr, class:"center"},
             {text:unit.name, class:"center"},
             {text:stock.curStr},
@@ -42,18 +46,19 @@ class Result {
             {text:unit.price1},
             {text:offsetStr},
             {text:tips, class:tipsClass},
+            {text:tips2},
         ]
     }
 
     head() {
         this.output = [
-            "序号",
             "代码",
             "名称",
             "最新价",
             "涨跌幅",
             "目标价",
             "距离",
+            "提示",
             "提示",
         ]
     }
