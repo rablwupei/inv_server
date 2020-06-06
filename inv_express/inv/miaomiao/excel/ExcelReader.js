@@ -56,6 +56,19 @@ class ExcelReader {
                     }
                     this._units.push(excelUnit);
                 }
+                var excelUnit = new ExcelUnit();
+                excelUnit.code = "" + unit[17];
+                excelUnit.name = "" + unit[18];
+                excelUnit.price1 = parseFloat(unit[19]);
+                if (excelUnit.code && !isNaN(excelUnit.price1)) {
+                    excelUnit.codeStr = sprintf("%05s", excelUnit.code);
+                    if (excelUnit.codeStr.startsWith("11")) {
+                        excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
+                    } else {
+                        excelUnit.codeStrMarket = "sz" + excelUnit.codeStr;
+                    }
+                    this._units.push(excelUnit);
+                }
             } else {
                 excelUnit.code = "" + unit[0];
                 excelUnit.name = "" + unit[1];
