@@ -22,6 +22,13 @@ timer.start = function () {
             })
         }
     });
+    require('../utils/cron').startInTrade('30 12 * * 1-5', async() => {
+        var weixin = require("../utils/weixin");
+        weixin.send({
+            message : "记得申购新股和新债呦...",
+            touser : "wupei",
+        })
+    });
 };
 
 module.exports = timer;
