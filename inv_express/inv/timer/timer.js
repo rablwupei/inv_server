@@ -8,7 +8,7 @@ var timer = {};
 // Day of Week: 0-6 (Sun-Sat)
 
 timer.start = function () {
-    require('../utils/cron').startInTrade('* * * * 1-5', async() => {
+    require('../utils/cron').startInTrade('0,30 14 * * 1-5', async() => {
         var http = require("../utils/http");
         var body = await http.get("https://xueqiu.com/S/SZ161716");
         if (body) {
