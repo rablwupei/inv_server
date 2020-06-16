@@ -1,3 +1,6 @@
+require('console-stamp')(console, {
+    format: ':date(yyyy/mm/dd HH:MM:ss.l) :label'
+});
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
