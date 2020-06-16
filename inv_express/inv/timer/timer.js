@@ -8,18 +8,22 @@ var timer = {};
 // Day of Week: 0-6 (Sun-Sat)
 
 timer.start = function () {
-    require('../utils/cron').startInTrade('0,30 14 * * 1-5', async() => {
+    require('../utils/cron').startInTrade('* * * * 1-5', async() => {
         var http = require("../utils/http");
         var body = await http.get("https://xueqiu.com/S/SZ161716");
-        body = body.match(/溢价率：&lt;span&gt;(-?\d+\.\d+)%/);
-        var value = parseFloat(body[1]);
-        var limit = 0.2;
-        if (value && value > limit) {
-            var weixin = require("../utils/weixin");
-            weixin.send({
-                message : "招商双债(161716)溢价率 " + value + "% > " + limit + "%",
-                touser : "@all",
-            })
+        if (body) {
+            body = body.match(/溢价率：&lt;span&gt;(-?\d+\.\d+)%/);
+            if (body) {
+                var value = parseFloat(body[1]);
+                var limit = 0.2;
+                if (value && value > limit) {
+                    var weixin = require("../utils/weixin");
+                    weixin.send({
+                        message : "招商双债(161716)溢价率 " + value + "% > " + limit + "%",
+                        touser : "@all",
+                    })
+                }
+            }
         }
     });
     require('../utils/cron').startInTrade('30 12 * * 1-5', async() => {
