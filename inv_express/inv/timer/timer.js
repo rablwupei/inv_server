@@ -33,6 +33,18 @@ timer.start = function () {
             touser : "wupei",
         })
     });
+
+    require('../utils/cron').startInTrade('31 9 * * 1-5', async() => {
+        let code = "sz300824";
+        let stockMap = await require('../market/sina').get(code);
+        let stock = stockMap[code];
+        let msg = require('util').format("%s %s(%s%)", stock.name, stock.price, stock.percent * 100);
+        var weixin = require("../utils/weixin");
+        weixin.send({
+            message : msg,
+            touser : "wupei",
+        })
+    });
 };
 
 module.exports = timer;
