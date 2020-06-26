@@ -56,7 +56,7 @@ weixin._doSend = async function (msg) {
     var msgUrl = sprintf("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s", access_token);
     var body = await http.post(msgUrl, form);
     var bodyJson = JSON.parse(body);
-    if (bodyJson.errcode === 40014) {
+    if (bodyJson.errcode === 40014 || bodyJson.errcode === 42001) {
         access_token = null;
         return false;
     } else if (bodyJson.errcode !== 0) {

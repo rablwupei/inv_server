@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inv/market/us_spindices.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/market/us_spindices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inv/utils/weixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/utils/weixin.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
       <command value="npm install exceljs" />
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.bin\www">
+  <component name="RunManager" selected="Node.js.us_spindices.js">
     <configuration name="eoddata.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/eoddata.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
@@ -74,7 +73,7 @@
     <configuration name="tushare.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/tushare.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
-    <configuration name="yahoo.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/yahoo.js" working-dir="$PROJECT_DIR$/inv/market">
+    <configuration name="us_spindices.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/us_spindices.js" working-dir="$PROJECT_DIR$/inv/market">
       <method v="2" />
     </configuration>
     <configuration name="ycharts.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inv/market/ycharts.js" working-dir="$PROJECT_DIR$/inv/market">
@@ -82,19 +81,19 @@
     </configuration>
     <list>
       <item itemvalue="Node.js.bin\www" />
-      <item itemvalue="Node.js.yahoo.js" />
       <item itemvalue="Node.js.shangjifene.js" />
       <item itemvalue="Node.js.tushare.js" />
       <item itemvalue="Node.js.eoddata.js" />
       <item itemvalue="Node.js.ycharts.js" />
+      <item itemvalue="Node.js.us_spindices.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.us_spindices.js" />
         <item itemvalue="Node.js.ycharts.js" />
         <item itemvalue="Node.js.eoddata.js" />
         <item itemvalue="Node.js.tushare.js" />
         <item itemvalue="Node.js.shangjifene.js" />
-        <item itemvalue="Node.js.yahoo.js" />
       </list>
     </recent_temporary>
   </component>
@@ -660,26 +659,26 @@
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
     <state x="1012" y="360" key="FileChooserDialogImpl/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1586268713437" />
-    <state width="1718" height="244" key="GridCell.Tab.0.bottom" timestamp="1592300235432">
-      <screen x="63" y="0" width="2497" height="1080" />
+    <state width="1218" height="108" key="GridCell.Tab.0.bottom" timestamp="1593182097312">
+      <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1718" height="244" key="GridCell.Tab.0.bottom/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1592300235432" />
-    <state width="1218" height="280" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1587047842858" />
-    <state width="1718" height="244" key="GridCell.Tab.0.center" timestamp="1592300235432">
-      <screen x="63" y="0" width="2497" height="1080" />
+    <state width="1218" height="108" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1593182097312" />
+    <state width="1218" height="108" key="GridCell.Tab.0.center" timestamp="1593182097311">
+      <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1718" height="244" key="GridCell.Tab.0.center/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1592300235432" />
-    <state width="1218" height="280" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1587047842857" />
-    <state width="1718" height="244" key="GridCell.Tab.0.left" timestamp="1592300235432">
-      <screen x="63" y="0" width="2497" height="1080" />
+    <state width="1218" height="108" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1593182097311" />
+    <state width="1218" height="108" key="GridCell.Tab.0.left" timestamp="1593182097311">
+      <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1718" height="244" key="GridCell.Tab.0.left/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1592300235432" />
-    <state width="1218" height="280" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1587047842856" />
-    <state width="1718" height="244" key="GridCell.Tab.0.right" timestamp="1592300235432">
-      <screen x="63" y="0" width="2497" height="1080" />
+    <state width="1218" height="108" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1593182097311" />
+    <state width="1218" height="108" key="GridCell.Tab.0.right" timestamp="1593182097312">
+      <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state width="1718" height="244" key="GridCell.Tab.0.right/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1592300235432" />
-    <state width="1218" height="280" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1587047842857" />
+    <state width="1218" height="108" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1593182097312" />
     <state width="1718" height="302" key="GridCell.Tab.1.bottom" timestamp="1587188001074">
       <screen x="63" y="0" width="2497" height="1080" />
     </state>
@@ -781,10 +780,10 @@
       <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="355" y="210" key="git4idea.merge.GitPullDialog/36.23.1244.777@36.23.1244.777" timestamp="1585456001803" />
-    <state x="895" y="340" width="672" height="678" key="search.everywhere.popup" timestamp="1592271033852">
-      <screen x="63" y="0" width="2497" height="1080" />
+    <state x="451" y="268" width="670" height="488" key="search.everywhere.popup" timestamp="1593181513705">
+      <screen x="36" y="23" width="1244" height="777" />
     </state>
     <state x="895" y="340" width="672" height="678" key="search.everywhere.popup/2623.0.1857.1080/63.0.2497.1080@63.0.2497.1080" timestamp="1592271033852" />
-    <state x="451" y="268" width="670" height="488" key="search.everywhere.popup/36.23.1244.777@36.23.1244.777" timestamp="1586106346900" />
+    <state x="451" y="268" width="670" height="488" key="search.everywhere.popup/36.23.1244.777@36.23.1244.777" timestamp="1593181513705" />
   </component>
 </project>

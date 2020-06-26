@@ -8,12 +8,18 @@ class Us_spindicesStock extends AbstractStock {
 
     parse(body) {
         //"publishedValue":1021.80416993917696,
-        let match = body.match(/\"publishedValue\":(-?\d+\.\d+),/);
-        this.price = parseFloat(match[1]);
-        match = body.match(/\"percentageChange\":(-?\d+\.\d+),/);
-        this.percent = this.parsePercentDivisor100(match[1]);
-        match = body.match(/\"indexDailyChange\":(-?\d+\.\d+),/);
-        this.change = parseFloat(match[1]);
+        // let match = body.match(/\"publishedValue\":(-?\d+\.\d+),/);
+        // this.price = parseFloat(match[1]);
+        // match = body.match(/\"percentageChange\":(-?\d+\.\d+),/);
+        // this.percent = this.parsePercentDivisor100(match[1]);
+        // match = body.match(/\"indexDailyChange\":(-?\d+\.\d+),/);
+        // this.change = parseFloat(match[1]);
+
+        const cheerio = require('cheerio');
+        const $ = cheerio.load(body);
+        this.price = this.parseFloat($("span.published-value").text());
+        this.percent = this.parsePercentDivisor100($("label.daily-change").text());
+        this.change = 0;
     }
 }
 
