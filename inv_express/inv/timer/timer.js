@@ -34,16 +34,18 @@ timer.start = function () {
         })
     });
 
-    require('../utils/cron').startInTrade('31 9 * * 1-5', async() => {
+    require('../utils/cron').startInTrade('31 9-14 * * 1-5', async() => {
         let code = "sz300824";
         let stockMap = await require('../market/sina').get(code);
         let stock = stockMap[code];
-        let msg = require('util').format("%s %s(%s%)", stock.name, stock.price, stock.percent * 100);
-        var weixin = require("../utils/weixin");
-        weixin.send({
-            message : msg,
-            touser : "wupei",
-        })
+        if (stock.percent < 0.095) {
+            let msg = require('util').format("%s %s(%s%)", stock.name, stock.price, stock.percent * 100);
+            var weixin = require("../utils/weixin");
+            weixin.send({
+                message : msg,
+                touser : "wupei",
+            })
+        }
     });
 };
 
