@@ -23,6 +23,7 @@ class Result {
             tips = unit.tips
         }
         let total = 50;
+        let number = offset;
         if (unit.price1 > 0) {
             if (unit.cangwei) {
                 if (offset < 0) {
@@ -32,6 +33,7 @@ class Result {
                     var percent = ((-offset + 0.1) / 0.3) * unit.cangwei;
                     tips = sprintf("%.2f%%", percent * 100);
                     tips2 = sprintf("%.2f", percent * total);
+                    number = -percent;
                 } else {
                     //0.0 0.1  10% 10%
                     //0.05 0.1  10% 5%
@@ -42,17 +44,19 @@ class Result {
                         tips2 = sprintf("%.2f", percent * total);
                         tipsClass = "gray";
                         tips2Class = "gray";
+                        number = -percent;
                     } else {
                         tips = sprintf("%.2f%%", unit.cangwei * 100);
                         tips2 = 0;
                         tipsClass = "gray";
                         tips2Class = "gray";
+                        number = -percent;
                     }
                 }
             }
             offsetStr = sprintf("%.2f%%", offset * 100);
         }
-        this.number = offset;
+        this.number = number;
         this.output = [
             {text:unit.codeStr, class:"center"},
             {text:unit.name, class:"center"},
