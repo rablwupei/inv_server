@@ -31,6 +31,11 @@ class ExcelReader {
             if (this._type === ExcelReader.type_miaomiaohk) {
                 excelUnit.code = "" + unit[0];
                 excelUnit.name = "" + unit[1];
+                if (excelUnit.name === "复星国际") {
+                    excelUnit.code = "656";
+                } else if (excelUnit.name === "周黑鸭") {
+                    excelUnit.code = "1458";
+                }
                 excelUnit.price1 = parseFloat(unit[2]);
                 if (unit[7]) {
                     excelUnit.tips = "" + unit[7];
