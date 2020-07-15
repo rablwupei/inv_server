@@ -31,12 +31,9 @@ class ExcelReader {
             if (this._type === ExcelReader.type_miaomiaohk) {
                 excelUnit.code = "" + unit[0];
                 excelUnit.name = "" + unit[1];
-                if (excelUnit.name === "复星国际") {
-                    excelUnit.code = "656";
-                }
-                excelUnit.price1 = parseFloat(unit[3]);
-                if (unit[2]) {
-                    excelUnit.tips = "" + unit[2];
+                excelUnit.price1 = parseFloat(unit[2]);
+                if (unit[7]) {
+                    excelUnit.tips = "" + unit[7];
                 }
                 if (excelUnit.code && !isNaN(excelUnit.price1)) {
                     excelUnit.codeStr = sprintf("%05s", excelUnit.code);

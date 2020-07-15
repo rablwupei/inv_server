@@ -34,7 +34,7 @@ timer.start = function () {
         })
     });
 
-    require('../utils/cron').startInTrade('31 9-14 * * 1-5', async() => {
+    require('../utils/cron').startInTrade('31 9,14 * * 1-5', async() => {
         let code = "sz300824";
         let stockMap = await require('../market/sina').get(code);
         let stock = stockMap[code];
