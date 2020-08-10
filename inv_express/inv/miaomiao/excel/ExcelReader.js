@@ -46,10 +46,10 @@ class ExcelReader {
                     this._units.push(excelUnit);
                 }
             } else if (this._type === ExcelReader.type_miaomiaozhuanzhai) {
-                excelUnit.code = "" + unit[12];
-                excelUnit.name = "" + unit[13];
-                excelUnit.price1 = parseFloat(unit[14]);
-                if (excelUnit.code && !isNaN(excelUnit.price1)) {
+                excelUnit.code = "" + unit[0];
+                excelUnit.name = "" + unit[1];
+                excelUnit.price1 = parseFloat(unit[2]);
+                if (unit[5] && excelUnit.code && !isNaN(excelUnit.price1)) {
                     excelUnit.codeStr = sprintf("%05s", excelUnit.code);
                     if (excelUnit.codeStr.startsWith("11")) {
                         excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
@@ -58,19 +58,19 @@ class ExcelReader {
                     }
                     this._units.push(excelUnit);
                 }
-                var excelUnit = new ExcelUnit();
-                excelUnit.code = "" + unit[17];
-                excelUnit.name = "" + unit[18];
-                excelUnit.price1 = parseFloat(unit[19]);
-                if (excelUnit.code && !isNaN(excelUnit.price1)) {
-                    excelUnit.codeStr = sprintf("%05s", excelUnit.code);
-                    if (excelUnit.codeStr.startsWith("11")) {
-                        excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
-                    } else {
-                        excelUnit.codeStrMarket = "sz" + excelUnit.codeStr;
-                    }
-                    this._units.push(excelUnit);
-                }
+                // var excelUnit = new ExcelUnit();
+                // excelUnit.code = "" + unit[17];
+                // excelUnit.name = "" + unit[18];
+                // excelUnit.price1 = parseFloat(unit[19]);
+                // if (excelUnit.code && !isNaN(excelUnit.price1)) {
+                //     excelUnit.codeStr = sprintf("%05s", excelUnit.code);
+                //     if (excelUnit.codeStr.startsWith("11")) {
+                //         excelUnit.codeStrMarket = "sh" + excelUnit.codeStr;
+                //     } else {
+                //         excelUnit.codeStrMarket = "sz" + excelUnit.codeStr;
+                //     }
+                //     this._units.push(excelUnit);
+                // }
             } else {
                 excelUnit.code = "" + unit[0];
                 excelUnit.name = "" + unit[1];
