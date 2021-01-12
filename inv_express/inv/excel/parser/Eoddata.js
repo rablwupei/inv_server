@@ -2,11 +2,11 @@ let DataSourceParser = require("../DataSourceParser");
 
 class DataSourceParserEoddata extends DataSourceParser {
     get key() {
-        return "eoddata";
+        return "eoddata_delete";
     }
 
     get regular() {
-        return /eoddata\[(.*?)\]\[(.*?)\]/g;
+        return /eoddata_delete\[(.*?)\]\[(.*?)\]/g;
     }
 
     replaceStr(str) {
