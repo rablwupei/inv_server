@@ -118,7 +118,7 @@ Result.request = async function() {
         Result.requestExcel("a_market.xls"),
         Result.requestExcel("zhuanzhai.xlsx", ExcelReader.type_miaomiaozhuanzhai),
         Result.requestExcel("hk_market.xls"),
-        Result.requestExcel("hk.xlsx", ExcelReader.type_miaomiaohk),
+        Result.requestExcel("hk.xls", ExcelReader.type_miaomiaohk),
     ]);
     return results;
 };
