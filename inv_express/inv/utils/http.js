@@ -28,7 +28,7 @@ http.get = function (url, option = {}, customRequest) {
             // console.log(requests.length +  ": " + requests.concat(","));
             if (!error) {
                 if (response) {
-                    if (response.statusCode === 200) {
+                    if (response.statusCode === 200 || response.statusCode === 503) {
                         if (body) {
                             resolve(body);
                         } else {
