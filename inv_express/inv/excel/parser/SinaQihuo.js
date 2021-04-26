@@ -57,19 +57,26 @@ class DataSourceParserSinaQihuo extends DataSourceParser {
     }
 
     static getTime(name) {
-        let thirdFriday = DataSourceParserSinaQihuo.getThirdFriday(moment());
+        let util = DataSourceParserSinaQihuo;
+        //moment().quarter(moment().quarter() - 1).endOf('quarter').valueOf()
+        let thirdFriday = util.getThirdFriday(moment());
         thirdFriday.minute(59).second(59);
         if (moment().isAfter(thirdFriday)) {
-            thirdFriday = DataSourceParserSinaQihuo.getThirdFriday(thirdFriday.add(1, "M"));
+            thirdFriday = util.getThirdFriday(thirdFriday.add(1, "M"));
         }
         if (name === "当月") {
 
         } else if (name === "下月") {
-            thirdFriday = DataSourceParserSinaQihuo.getThirdFriday(thirdFriday.add(1, "M"));
+            thirdFriday = util.getThirdFriday(thirdFriday.add(1, "M"));
         } else if (name === "下季") {
-            thirdFriday = DataSourceParserSinaQihuo.getThirdFriday(thirdFriday.add(4, "M"));
+            thirdFriday = util.getThirdFriday(thirdFriday.add(1, "M"));
+            let endDay = thirdFriday.quarter(thirdFriday.quarter() + 1).endOf('quarter');
+            thirdFriday = util.getThirdFriday(endDay);
         } else if (name === "下下季") {
-            thirdFriday = DataSourceParserSinaQihuo.getThirdFriday(thirdFriday.add(7, "M"));
+            thirdFriday = util.getThirdFriday(thirdFriday.add(1, "M"));
+            let endDay = thirdFriday.quarter(thirdFriday.quarter() + 1).endOf('quarter');
+            thirdFriday = util.getThirdFriday(endDay);
+            thirdFriday = util.getThirdFriday(thirdFriday.add(3, "M"));
         }
         return thirdFriday;
     }
