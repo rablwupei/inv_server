@@ -77,6 +77,11 @@ class DataSourceParserSinaQihuo extends DataSourceParser {
             let endDay = thirdFriday.quarter(thirdFriday.quarter() + 1).endOf('quarter');
             thirdFriday = util.getThirdFriday(endDay);
             thirdFriday = util.getThirdFriday(thirdFriday.add(3, "M"));
+        } else if (name === "下下下季") {
+            thirdFriday = util.getThirdFriday(thirdFriday.add(1, "M"));
+            let endDay = thirdFriday.quarter(thirdFriday.quarter() + 1).endOf('quarter');
+            thirdFriday = util.getThirdFriday(endDay);
+            thirdFriday = util.getThirdFriday(thirdFriday.add(6, "M"));
         }
         return thirdFriday;
     }
