@@ -36,7 +36,7 @@ class ExcelReader {
                 } else if (excelUnit.name === "周黑鸭") {
                     excelUnit.code = "1458";
                 } else if (excelUnit.name === "北京控股") {
-                    excelUnit.code = "0392";
+                    excelUnit.code = "392";
                 }
                 excelUnit.price1 = parseFloat(unit[2]);
                 if (unit[7]) {
