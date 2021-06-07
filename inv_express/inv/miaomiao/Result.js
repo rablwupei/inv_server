@@ -114,11 +114,11 @@ Result.requestExcel = async function(name, type) {
 
 Result.request = async function() {
     var results = await Promise.all([
-        Result.requestExcel("a.xls"),
+        Result.requestExcel("a_hk.xls"),
         Result.requestExcel("a_market.xls"),
-        Result.requestExcel("zhuanzhai.xlsx", ExcelReader.type_miaomiaozhuanzhai),
+        Result.requestExcel("zhuanzhai.xls", ExcelReader.type_miaomiaozhuanzhai),
         Result.requestExcel("hk_market.xls"),
-        Result.requestExcel("hk.xls", ExcelReader.type_miaomiaohk),
+        Result.requestExcel("a_hk.xls", ExcelReader.type_miaomiaohk),
     ]);
     return results;
 };

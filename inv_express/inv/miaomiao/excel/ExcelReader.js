@@ -22,7 +22,11 @@ class ExcelReader {
     }
 
     parse() {
-        var data = xlsx.parse(this._path)[0].data;
+        if (this._type === ExcelReader.type_miaomiaohk) {
+            var data = xlsx.parse(this._path)[1].data;
+        } else {
+            var data = xlsx.parse(this._path)[0].data;
+        }
         //[ 601933, '永辉超市', 7.5, 6.375, 5.41875, 0.2, <1 empty item>, '新增' ]
         this._units = [];
         for (var row = 0; row < data.length; row++) {
