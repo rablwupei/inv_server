@@ -1,5 +1,6 @@
 var proxy = {};
 var http = require("../utils/http");
+var iconv = require('iconv-lite');
 
 class Proxy {
 
@@ -29,7 +30,7 @@ function shuffle(array) {
 
 proxy.getList = async function() {
     var proxys = []
-    for (var i = 1; i <= 1; i++) {
+    for (var i = 2; i <= 2; i++) {
         var url = "https://www.kuaidaili.com/free/inha/" + i
         var option = {};
         var body = await http.get(url, option);
