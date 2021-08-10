@@ -37,7 +37,7 @@ sina.get = async function(codes) {
     }
     var map = {};
     // console.log("url: " + url);
-    var option = {encoding: null, proxy: "http://14.116.213.100:8081"};
+    var option = {encoding: null, proxy: "http://222.74.202.244:80"};
     var body = await http.get(url, option);
     body = iconv.decode(body, 'GBK');
     if (!body.endsWith("FAILED")) {
