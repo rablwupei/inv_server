@@ -36,7 +36,7 @@ timer.start = function () {
     });
 
     require('../utils/cron').startInTrade('31 9,11,13,14 * * 1-5', async() => {
-        let code = "sh688303";
+        let code = "sh605589";
         let stockMap = await require('../market/sina').get(code);
         let stock = stockMap[code];
         // if (stock.percent < 0.095) {
