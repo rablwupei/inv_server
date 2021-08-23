@@ -35,33 +35,20 @@ timer.start = function () {
         })
     });
 
-    require('../utils/cron').startInTrade('31 9,11,13,14 * * 1-5', async() => {
-        let code = "sh605589";
-        let stockMap = await require('../market/sina').get(code);
-        let stock = stockMap[code];
-        // if (stock.percent < 0.095) {
-        let msg = require('util').format("%s %s(%s%)", stock.name, stock.price, stock.percent * 100);
-        var weixin = require("../utils/weixin");
-        weixin.send({
-            message : msg,
-            touser : "wupei",
-        })
-        // }
-    });
+    // require('../utils/cron').startInTrade('31 9,11,13,14 * * 1-5', async() => {
+    //     let code = "sh605589";
+    //     let stockMap = await require('../market/sina').get(code);
+    //     let stock = stockMap[code];
+    //     // if (stock.percent < 0.095) {
+    //     let msg = require('util').format("%s %s(%s%)", stock.name, stock.price, stock.percent * 100);
+    //     var weixin = require("../utils/weixin");
+    //     weixin.send({
+    //         message : msg,
+    //         touser : "wupei",
+    //     })
+    //     // }
+    // });
 
-    require('../utils/cron').startInTrade('31 9,11,13,14 * * 1-5', async() => {
-        let code = "sh688779";
-        let stockMap = await require('../market/sina').get(code);
-        let stock = stockMap[code];
-        // if (stock.percent < 0.095) {
-        let msg = require('util').format("%s %s(%s%)", stock.name, stock.price, stock.percent * 100);
-        var weixin = require("../utils/weixin");
-        weixin.send({
-            message : msg,
-            touser : "wupei",
-        })
-        // }
-    });
 };
 
 module.exports = timer;
