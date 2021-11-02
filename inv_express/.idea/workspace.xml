@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="refactor">
+    <list default="true" id="e58ec77a-8b9d-4193-87a6-65c3ed5695f9" name="Default Changelist" comment="Revert &quot;add futu api&quot;&#10;&#10;This reverts commit b421b799">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/miaomiao/Result.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/miaomiao/Result.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inv/miaomiao/excel/ExcelReader.js" beforeDir="false" afterPath="$PROJECT_DIR$/inv/miaomiao/excel/ExcelReader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +20,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="MIXED" />
     <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="WARN_ABOUT_CRLF" value="false" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/rablwupei/inv_server.git" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1YEyXy7WHReOuyfqxhJN8Pl6kPh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -186,20 +195,6 @@
       <workItem from="1595945286889" duration="589000" />
       <workItem from="1613575501517" duration="2258000" />
       <workItem from="1616419419958" duration="1389000" />
-    </task>
-    <task id="LOCAL-00015" summary="add wangyi">
-      <created>1585500870590</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1585500870590</updated>
-    </task>
-    <task id="LOCAL-00016" summary="add shangjifene">
-      <created>1585542606870</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1585542606870</updated>
     </task>
     <task id="LOCAL-00017" summary="refactor">
       <created>1585544161233</created>
@@ -530,7 +525,21 @@
       <option name="project" value="LOCAL" />
       <updated>1593698168034</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="add futu api">
+      <created>1635771682393</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1635771682394</updated>
+    </task>
+    <task id="LOCAL-00065" summary="add futu api">
+      <created>1635864714482</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1635864714484</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,16 +592,10 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_TABS">
-      <set>
-        <option value="1" />
-      </set>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="co -&gt; async" />
     <MESSAGE value="db" />
     <MESSAGE value="yingweietf" />
     <MESSAGE value="ft" />
@@ -617,88 +620,49 @@
     <MESSAGE value="weixintixing" />
     <MESSAGE value="fix" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="add futu api" />
+    <option name="LAST_COMMIT_MESSAGE" value="add futu api" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="122" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613575592645">
+    <state x="154" y="23" width="901" height="777" key="CommitChangelistDialog2" timestamp="1635865350411">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state x="122" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.23.1244.777@36.23.1244.777" timestamp="1613575592645" />
-    <state x="242" y="23" key="CommitChangelistDialog2" timestamp="1613576577824">
+    <state x="154" y="23" width="901" height="777" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1635865350411" />
+    <state x="136" y="123" width="1044" height="577" key="DiffContextDialog" timestamp="1635865161469">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state x="242" y="23" key="CommitChangelistDialog2/36.23.1244.777@36.23.1244.777" timestamp="1613576577824" />
-    <state width="1223" height="173" key="GridCell.Tab.0.bottom" timestamp="1616421507759">
+    <state x="136" y="123" width="1044" height="577" key="DiffContextDialog/36.23.1244.777@36.23.1244.777" timestamp="1635865161469" />
+    <state width="1223" height="286" key="GridCell.Tab.0.bottom" timestamp="1635865289853">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="173" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1616421507759" />
-    <state width="1223" height="173" key="GridCell.Tab.0.center" timestamp="1616421507756">
+    <state width="1223" height="286" key="GridCell.Tab.0.bottom/36.23.1244.777@36.23.1244.777" timestamp="1635865289853" />
+    <state width="1223" height="286" key="GridCell.Tab.0.center" timestamp="1635865289851">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="173" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1616421507756" />
-    <state width="1223" height="173" key="GridCell.Tab.0.left" timestamp="1616421507754">
+    <state width="1223" height="286" key="GridCell.Tab.0.center/36.23.1244.777@36.23.1244.777" timestamp="1635865289851" />
+    <state width="1223" height="286" key="GridCell.Tab.0.left" timestamp="1635865289850">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="173" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1616421507754" />
-    <state width="1223" height="173" key="GridCell.Tab.0.right" timestamp="1616421507758">
+    <state width="1223" height="286" key="GridCell.Tab.0.left/36.23.1244.777@36.23.1244.777" timestamp="1635865289850" />
+    <state width="1223" height="286" key="GridCell.Tab.0.right" timestamp="1635865289852">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="173" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1616421507758" />
-    <state width="1223" height="243" key="GridCell.Tab.1.bottom" timestamp="1616420850848">
+    <state width="1223" height="286" key="GridCell.Tab.0.right/36.23.1244.777@36.23.1244.777" timestamp="1635865289852" />
+    <state x="382" y="140" key="RollbackChangesDialog" timestamp="1635865021420">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="243" key="GridCell.Tab.1.bottom/36.23.1244.777@36.23.1244.777" timestamp="1616420850848" />
-    <state width="1223" height="243" key="GridCell.Tab.1.center" timestamp="1616420850846">
+    <state x="382" y="140" key="RollbackChangesDialog/36.23.1244.777@36.23.1244.777" timestamp="1635865021420" />
+    <state x="258" y="151" key="Vcs.Push.Dialog.v2" timestamp="1635771688295">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="243" key="GridCell.Tab.1.center/36.23.1244.777@36.23.1244.777" timestamp="1616420850846" />
-    <state width="1223" height="243" key="GridCell.Tab.1.left" timestamp="1616420850845">
+    <state x="258" y="151" key="Vcs.Push.Dialog.v2/36.23.1244.777@36.23.1244.777" timestamp="1635771688295" />
+    <state x="441" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1635771546341">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="243" key="GridCell.Tab.1.left/36.23.1244.777@36.23.1244.777" timestamp="1616420850845" />
-    <state width="1223" height="243" key="GridCell.Tab.1.right" timestamp="1616420850847">
+    <state x="441" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/36.23.1244.777@36.23.1244.777" timestamp="1635771546341" />
+    <state x="323" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1635865385809">
       <screen x="36" y="23" width="1244" height="777" />
     </state>
-    <state width="1223" height="243" key="GridCell.Tab.1.right/36.23.1244.777@36.23.1244.777" timestamp="1616420850847" />
-    <state width="1223" height="243" key="GridCell.Tab.2.bottom" timestamp="1616420850856">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.2.bottom/36.23.1244.777@36.23.1244.777" timestamp="1616420850856" />
-    <state width="1223" height="243" key="GridCell.Tab.2.center" timestamp="1616420850850">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.2.center/36.23.1244.777@36.23.1244.777" timestamp="1616420850850" />
-    <state width="1223" height="243" key="GridCell.Tab.2.left" timestamp="1616420850849">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.2.left/36.23.1244.777@36.23.1244.777" timestamp="1616420850849" />
-    <state width="1223" height="243" key="GridCell.Tab.2.right" timestamp="1616420850850">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.2.right/36.23.1244.777@36.23.1244.777" timestamp="1616420850850" />
-    <state width="1223" height="243" key="GridCell.Tab.3.bottom" timestamp="1616420850860">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.3.bottom/36.23.1244.777@36.23.1244.777" timestamp="1616420850860" />
-    <state width="1223" height="243" key="GridCell.Tab.3.center" timestamp="1616420850858">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.3.center/36.23.1244.777@36.23.1244.777" timestamp="1616420850858" />
-    <state width="1223" height="243" key="GridCell.Tab.3.left" timestamp="1616420850857">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.3.left/36.23.1244.777@36.23.1244.777" timestamp="1616420850857" />
-    <state width="1223" height="243" key="GridCell.Tab.3.right" timestamp="1616420850859">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state width="1223" height="243" key="GridCell.Tab.3.right/36.23.1244.777@36.23.1244.777" timestamp="1616420850859" />
-    <state x="404" y="129" key="RollbackChangesDialog" timestamp="1616421022707">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state x="404" y="129" key="RollbackChangesDialog/36.23.1244.777@36.23.1244.777" timestamp="1616421022707" />
-    <state x="447" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616420963179">
-      <screen x="36" y="23" width="1244" height="777" />
-    </state>
-    <state x="447" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/36.23.1244.777@36.23.1244.777" timestamp="1616420963179" />
+    <state x="323" y="124" width="670" height="676" key="search.everywhere.popup/36.23.1244.777@36.23.1244.777" timestamp="1635865385809" />
   </component>
 </project>
