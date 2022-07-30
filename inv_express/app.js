@@ -77,6 +77,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/excel', require('./routes/excel'));
 app.use('/m', require('./routes/m'));
+app.use('/py', require('./routes/py'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
